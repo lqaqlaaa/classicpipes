@@ -103,7 +103,7 @@ public final class PipeConfig {
             w.write("# 数值越大通常代表速度/数量/时间越大；具体影响见每项说明。");
             w.newLine();
             section(w, "物品管道：传输速度与加速度");
-            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32767。");
+            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32766。");
             itemSettings(w, "basic", "普通/基础物品管道");
             itemSettings(w, "copper", "铜质物品管道");
             setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–1000000。");
@@ -120,7 +120,7 @@ public final class PipeConfig {
             itemSettings(w, "bone", "骨质物品管道");
             itemSettings(w, "network", "网络/请求/存储等网络型物品管道");
             section(w, "物品与网络请求生命周期");
-            setting(w, "items.packet_lifetime_ticks", "24000", "物品在管道内部允许存在的最长时间，超时后物品包会被清除。单位：游戏刻；24000刻约20分钟。范围：1–32767。");
+            setting(w, "items.packet_lifetime_ticks", "24000", "物品在管道内部允许存在的最长时间，超时后物品包会被清除。单位：游戏刻；24000刻约20分钟。范围：1–32766。");
             setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–32767。");
             setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–32767。");
             setting(w, "items.routing_overflow_check_interval_ticks", "100", "路由管道检查溢出处理的间隔。单位：游戏刻。数值越小检查越频繁，但会增加检查开销。范围：1–32767。");
@@ -220,7 +220,7 @@ public final class PipeConfig {
     public static int advancedCopperFluidExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, 1_000_000_000); }
     public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, 127); }
 
-    public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Short.MAX_VALUE); }
+    public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Short.MAX_VALUE - 1); }
     public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Short.MAX_VALUE); }
     public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Short.MAX_VALUE); }
     public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Short.MAX_VALUE); }
