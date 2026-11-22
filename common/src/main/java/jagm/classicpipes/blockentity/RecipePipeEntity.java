@@ -209,7 +209,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
                                 int amountToTake = Math.min(heldStack.getCount(), ingredientRemaining);
                                 this.queued.add(new ItemInPipe(
                                         heldStack.copyWithCount(amountToTake),
-                                        ItemInPipe.DEFAULT_SPEED,
+                                        jagm.classicpipes.PipeConfig.initialItemPacketSpeed(),
                                         ItemInPipe.HALFWAY,
                                         Direction.DOWN,
                                         this.slotDirections[slot],
