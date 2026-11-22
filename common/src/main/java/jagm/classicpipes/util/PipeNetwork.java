@@ -46,7 +46,7 @@ public class PipeNetwork {
         this.sortingMode = sortingMode;
         this.pos = pos;
         this.cacheChanged = false;
-        this.cacheCooldown = (byte) 0;
+        this.cacheCooldown = 0;
         this.requestedItems = new ArrayList<>();
     }
 
