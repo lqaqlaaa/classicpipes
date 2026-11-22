@@ -30,6 +30,7 @@
 - `items.network_request_timeout_ticks`：网络请求等待送达的超时时间。
 - `items.scheduled_route_timeout_ticks`：网络计划路线的最长有效时间。
 - `items.routing_overflow_check_interval_ticks`：路由管道检查溢出的间隔。
+- `items.recipe_crafter_poll_interval_ticks`：配方管道等待合成时检查相邻容器产物的间隔。
 
 ### 网络更新与缓存
 - `network.client_cache_update_interval_ticks`：网络缓存同步到客户端的间隔。
