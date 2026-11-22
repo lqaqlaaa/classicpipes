@@ -41,7 +41,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
     private final List<List<ItemStack>> heldItems;
     private int waitingForCraft;
     private boolean crafterTicked;
-    private byte cooldown;
+    private int cooldown;
     private boolean blockingMode;
 
     public RecipePipeEntity(BlockPos pos, BlockState state) {
@@ -94,7 +94,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = (byte) jagm.classicpipes.PipeConfig.recipeCrafterPollIntervalTicks();
+                this.cooldown = jagm.classicpipes.PipeConfig.recipeCrafterPollIntervalTicks();
             }
         } else if (!this.queued.isEmpty()) {
             this.addQueuedItems(level, false);
@@ -353,7 +353,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
         });
         this.waitingForCraft = valueInput.getInt("waiting_for_craft");
         this.crafterTicked = valueInput.getBoolean("crafter_ticked");
-        this.cooldown = valueInput.getByte("cooldown");
+        this.cooldown = valueInput.getInt("cooldown");
         this.blockingMode = valueInput.getBoolean("blocking_mode");
     }
 
@@ -393,7 +393,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
         valueOutput.put("held_items", heldItemList);
         valueOutput.putInt("waiting_for_craft", this.waitingForCraft);
         valueOutput.putBoolean("crafter_ticked", this.crafterTicked);
-        valueOutput.putByte("cooldown", this.cooldown);
+        valueOutput.putInt("cooldown", this.cooldown);
         valueOutput.putBoolean("blocking_mode", this.blockingMode);
     }
 
