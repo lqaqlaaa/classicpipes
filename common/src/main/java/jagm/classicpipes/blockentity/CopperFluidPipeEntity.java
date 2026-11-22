@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.block.CopperFluidPipeBlock;
 import jagm.classicpipes.services.Services;
@@ -27,7 +29,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
 
     public CopperFluidPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = DEFAULT_COOLDOWN;
+        this.cooldown = (byte) PipeConfig.fluidCopperInterval();
     }
 
     @Override
@@ -36,17 +38,17 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
         if (state.getValue(CopperFluidPipeBlock.ENABLED) && state.getValue(CopperFluidPipeBlock.FACING) != FacingOrNone.NONE) {
             if (this.cooldown-- <= 0) {
                 Direction direction = state.getValue(CopperFluidPipeBlock.FACING).getDirection();
-                if (Services.LOADER_SERVICE.handleFluidExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), this.extractAmount(), this.filterPredicate())) {
+                if (Services.LOADER_SERVICE.handleFluidExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), PipeConfig.fluidCopperExtractAmount(), this.filterPredicate())) {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = DEFAULT_COOLDOWN;
+                this.cooldown = (byte) PipeConfig.fluidCopperInterval();
             }
         }
     }
 
     protected int extractAmount() {
-        return 125;
+        return PipeConfig.fluidCopperExtractAmount();
     }
 
     protected Predicate<FluidWithData> filterPredicate() {
