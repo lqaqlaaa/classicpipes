@@ -18,6 +18,7 @@
 
 ### 物品管道
 - `items.speed_limit`：所有物品管道的最高速度上限。
+- `items.initial_packet_speed`：新生成的物品包进入管道时的初始速度。
 - `items.<管道类型>.speed`：对应管道的目标移动速度。
 - `items.<管道类型>.acceleration`：对应管道每刻调整物品速度的幅度。
 - `items.copper.extract_amount`、`items.advanced_copper.extract_amount`：铜质/高级铜质物品管道每次抽取的物品数量。
