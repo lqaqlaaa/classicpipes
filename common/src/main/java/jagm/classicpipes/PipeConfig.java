@@ -49,7 +49,7 @@ public final class PipeConfig {
 
     private static Properties defaults() {
         Properties p = new Properties();
-        p.setProperty("items.basic.speed", "64");
+        p.setProperty("items.speed_limit", "1024");\n        p.setProperty("items.basic.speed", "64");
         p.setProperty("items.basic.acceleration", "1");
         p.setProperty("items.copper.speed", "64");
         p.setProperty("items.copper.acceleration", "1");
@@ -97,7 +97,7 @@ public final class PipeConfig {
         }
     }
 
-    public static int itemBasicSpeed() { return get("items.basic.speed", 64, 1, 1024); }
+    public static int itemSpeedLimit() { return get("items.speed_limit", 1024, 1, 4096); }\n    public static int itemBasicSpeed() { return get("items.basic.speed", 64, 1, 1024); }
     public static int itemBasicAcceleration() { return get("items.basic.acceleration", 1, 1, 1024); }
     public static int itemCopperSpeed() { return get("items.copper.speed", 64, 1, 1024); }
     public static int itemCopperAcceleration() { return get("items.copper.acceleration", 1, 1, 1024); }
