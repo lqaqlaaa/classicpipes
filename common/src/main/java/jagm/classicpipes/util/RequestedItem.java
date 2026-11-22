@@ -15,7 +15,7 @@ import java.util.List;
 
 public class RequestedItem {
 
-    private static final short TIMEOUT = 24000;
+    
     public static final Codec<RequestedItem> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             MiscUtil.UNLIMITED_STACK_CODEC.fieldOf("item").orElse(ItemStack.EMPTY).forGetter(RequestedItem::getStack),
             BlockPos.CODEC.fieldOf("destination").orElse(BlockPos.ZERO).forGetter(RequestedItem::getDestination),
@@ -72,7 +72,7 @@ public class RequestedItem {
 
     public boolean timedOut() {
         this.age++;
-        return this.age > TIMEOUT;
+        return this.age > jagm.classicpipes.PipeConfig.networkRequestTimeoutTicks();
     }
 
     public boolean isDelivered() {
