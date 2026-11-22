@@ -23,7 +23,7 @@ public class ItemInPipe {
     public static final Codec<ItemInPipe> CODEC = RecordCodecBuilder.create(instance ->
         instance.group(
                 MiscUtil.UNLIMITED_STACK_CODEC.fieldOf("item").orElse(ItemStack.EMPTY).forGetter(ItemInPipe::getStack),
-                Codec.SHORT.fieldOf("speed").orElse(DEFAULT_SPEED).forGetter(ItemInPipe::getSpeed),
+                Codec.SHORT.fieldOf("speed").orElse(PipeConfig.initialItemPacketSpeed()).forGetter(ItemInPipe::getSpeed),
                 Codec.SHORT.fieldOf("progress").orElse((short) 0).forGetter(ItemInPipe::getProgress),
                 Codec.BYTE.fieldOf("from_direction").orElse((byte) 0).forGetter(item -> (byte) item.getFromDirection().get3DDataValue()),
                 Codec.BYTE.fieldOf("target_direction").orElse((byte) 0).forGetter(item -> (byte) item.getTargetDirection().get3DDataValue()),
@@ -55,7 +55,7 @@ public class ItemInPipe {
     }
 
     public ItemInPipe(ItemStack stack, Direction fromDirection, Direction toDirection, boolean ejecting) {
-        this(stack, DEFAULT_SPEED, (short) 0, fromDirection, toDirection, ejecting, (short) 0);
+        this(stack, PipeConfig.initialItemPacketSpeed(), (short) 0, fromDirection, toDirection, ejecting, (short) 0);
     }
 
     public ItemInPipe(ItemStack stack, short speed, short progress, byte fromDirection, byte targetDirection, boolean ejecting, short age) {
