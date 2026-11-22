@@ -25,7 +25,7 @@ public class FluidInPipe {
     private Direction targetDirection;
     private long age;
 
-    public FluidInPipe(int amount, short speed, short progress, Direction fromDirection, Direction targetDirection, long age) {
+    public FluidInPipe(int amount, short speed, int progress, Direction fromDirection, Direction targetDirection, long age) {
         this.amount = amount;
         this.speed = speed;
         this.progress = progress;
