@@ -1,47 +1,59 @@
-# Classic Pipes 1.21.1 configuration
+# Classic Pipes 1.21.1 配置说明
 
-This branch targets **Minecraft 1.21.1 / NeoForge 21.1.219**. The same shared settings class is in the common source set, so the property keys are also usable by the Fabric and Forge builds from this branch.
+本分支面向 **Minecraft 1.21.1**。配置由 common 公共代码实现，不依赖 NeoForge/Fabric/Forge 专属 API。
 
-After the first launch, the mod creates:
-
+首次启动后会生成：
 `config/classicpipes.properties`
 
-Edit the file and restart the game/server. Missing keys are added automatically on the next launch; existing values are preserved.
+## 使用方法
 
-## Item pipes
+1. 启动一次游戏，让模组生成配置文件。
+2. 完全退出游戏或服务器。
+3. 使用 UTF-8 文本编辑器打开 `config/classicpipes.properties`。
+4. 修改等号右侧的数值，保存后重新启动。
 
-| Property | Default | Purpose |
-|---|---:|---|
-| `items.speed_limit` | 1024 | Global maximum speed for item packets |
-| `items.basic.speed` / `items.basic.acceleration` | 64 / 1 | Wooden, brick and nether-brick pipes |
-| `items.copper.speed` / `items.copper.acceleration` | 64 / 1 | Copper item pipe |
-| `items.copper.extract_amount` | 1 | Items extracted per attempt |
-| `items.copper.extract_interval_ticks` | 9 | Ticks between extraction attempts |
-| `items.advanced_copper.speed` / `items.advanced_copper.acceleration` | 512 / 16 | Advanced copper item pipe |
-| `items.advanced_copper.extract_amount` | 64 | Items extracted per attempt |
-| `items.advanced_copper.extract_interval_ticks` | 9 | Ticks between extraction attempts |
-| `items.golden.speed` / `items.golden.acceleration` | 1024 / 16 | Golden item pipe |
-| `items.iron.speed` / `items.iron.acceleration` | 64 / 1 | Iron item pipe |
-| `items.diamond.speed` / `items.diamond.acceleration` | 64 / 1 | Diamond item pipe |
-| `items.flint.speed` / `items.flint.acceleration` | 64 / 1 | Flint item pipe |
-| `items.lapis.speed` / `items.lapis.acceleration` | 64 / 1 | Lapis item pipe |
-| `items.obsidian.speed` / `items.obsidian.acceleration` | 64 / 1 | Obsidian item pipe |
-| `items.bone.speed` / `items.bone.acceleration` | 64 / 1 | Bone item pipe |
-| `items.network.speed` / `items.network.acceleration` | 1024 / 64 | Routing/network item pipes |
+配置文件中的每个参数都有中文注释，说明用途、单位和调整方向。新增参数会在下次启动时自动补齐；已有值不会被覆盖。无法识别的自定义键会被保留，但当前版本不会读取它们。
 
-## Fluid pipes
+## 参数分组
 
-| Property | Default | Purpose |
-|---|---:|---|
-| `fluids.capacity_mb` | 1000 | Capacity of each fluid pipe, in mB |
-| `fluids.minimum_packet_mb` | 20 | Minimum amount for splitting fluid packets |
-| `fluids.speed_thin` | 256 | Speed for fluids tagged as thin |
-| `fluids.speed_normal` | 128 | Speed for normal fluids |
-| `fluids.speed_thick` | 64 | Speed for thick fluids |
-| `fluids.acceleration` | 1 | Fluid packet acceleration |
-| `fluids.copper.extract_amount_mb` | 125 | Copper fluid pipe extraction amount, in mB |
-| `fluids.copper.extract_interval_ticks` | 5 | Copper fluid pipe extraction interval |
-| `fluids.advanced_copper.extract_amount_mb` | 500 | Advanced copper fluid pipe extraction amount, in mB |
-| `fluids.advanced_copper.extract_interval_ticks` | 5 | Advanced copper fluid pipe extraction interval |
+### 物品管道
+- `items.speed_limit`：所有物品管道的最高速度上限。
+- `items.<管道类型>.speed`：对应管道的目标移动速度。
+- `items.<管道类型>.acceleration`：对应管道每刻调整物品速度的幅度。
+- `items.copper.extract_amount`、`items.advanced_copper.extract_amount`：铜质/高级铜质物品管道每次抽取的物品数量。
+- `items.copper.extract_interval_ticks`、`items.advanced_copper.extract_interval_ticks`：两次抽取之间的游戏刻数。
 
-Speeds are limited by `items.speed_limit`. Extraction intervals are clamped to 1–127 ticks. Numeric values outside supported ranges are clamped; invalid values fall back to defaults.
+管道类型包括：`basic`（普通/基础）、`copper`、`advanced_copper`、`golden`、`iron`、`diamond`、`flint`、`lapis`、`obsidian`、`bone`、`network`（网络型）。
+
+### 物品与网络请求生命周期
+- `items.packet_lifetime_ticks`：物品包在管道内的最长存活时间。
+- `items.network_request_timeout_ticks`：网络请求等待送达的超时时间。
+- `items.scheduled_route_timeout_ticks`：网络计划路线的最长有效时间。
+- `items.routing_overflow_check_interval_ticks`：路由管道检查溢出的间隔。
+
+### 网络更新与缓存
+- `network.client_cache_update_interval_ticks`：网络缓存同步到客户端的间隔。
+- `network.pipe_update_scan_minimum`：网络更新抽样调度使用的最小扫描基数。
+
+### 流体管道
+- `fluids.capacity_mb`：单段流体管道内部容量，单位 mB。
+- `fluids.minimum_packet_mb`：传输流体包的最小量，单位 mB。
+- `fluids.speed_thin`、`fluids.speed_normal`、`fluids.speed_thick`：三种流体类别对应的目标速度。
+- `fluids.acceleration`：流体包每刻调整速度的幅度。
+- `fluids.copper.extract_amount_mb`、`fluids.advanced_copper.extract_amount_mb`：铜质/高级铜质流体管道每次抽取的流体量。
+- `fluids.copper.extract_interval_ticks`、`fluids.advanced_copper.extract_interval_ticks`：两次流体抽取之间的游戏刻数。
+
+## 单位换算
+
+- 20 游戏刻 = 1 秒。
+- 1200 游戏刻 = 1 分钟。
+- 24000 游戏刻 = 20 分钟。
+- 流体容量和流体抽取量使用 mB（毫桶）。
+- 管道速度使用模组内部速度单位，不等同于方块/秒；数值越大，管道内的物品/流体包移动越快。
+
+## 注意
+
+- 配置目前在启动时读取，修改后必须重启游戏或服务器。
+- 速度、加速度和计时器有数据类型安全范围，超出范围会自动限制到允许范围。
+- 物品/流体管道内部用于模型定位的几何常量、方向编号、GUI 布局坐标等属于程序实现数据，不是玩家可调的游戏平衡参数，因此不会放进配置文件。
+- 本配置文件为 NeoForge 1.21.1 分支的实际实现清单；若某项源码参数尚未接入，不能仅凭文档声称它已可配置。
