@@ -24,23 +24,23 @@ public class ItemInPipe {
         instance.group(
                 MiscUtil.UNLIMITED_STACK_CODEC.fieldOf("item").orElse(ItemStack.EMPTY).forGetter(ItemInPipe::getStack),
                 Codec.SHORT.fieldOf("speed").orElse(PipeConfig.initialItemPacketSpeed()).forGetter(ItemInPipe::getSpeed),
-                Codec.SHORT.fieldOf("progress").orElse((short) 0).forGetter(ItemInPipe::getProgress),
+                Codec.INT.fieldOf("progress").orElse(0).forGetter(ItemInPipe::getProgress),
                 Codec.BYTE.fieldOf("from_direction").orElse((byte) 0).forGetter(item -> (byte) item.getFromDirection().get3DDataValue()),
                 Codec.BYTE.fieldOf("target_direction").orElse((byte) 0).forGetter(item -> (byte) item.getTargetDirection().get3DDataValue()),
                 Codec.BOOL.fieldOf("ejecting").orElse(true).forGetter(ItemInPipe::isEjecting),
-                Codec.SHORT.fieldOf("age").orElse((short) 0).forGetter(ItemInPipe::getAge)
+                Codec.LONG.fieldOf("age").orElse(0L).forGetter(ItemInPipe::getAge)
         ).apply(instance, ItemInPipe::new)
     );
 
     private ItemStack stack;
     private short speed;
-    private short progress;
+    private int progress;
     private Direction fromDirection;
     private Direction targetDirection;
     private boolean ejecting;
-    private short age;
+    private long age;
 
-    public ItemInPipe(ItemStack stack, short speed, short progress, Direction fromDirection, Direction targetDirection, boolean ejecting, short age) {
+    public ItemInPipe(ItemStack stack, short speed, int progress, Direction fromDirection, Direction targetDirection, boolean ejecting, long age) {
         this.stack = stack;
         this.speed = (short) Math.min(speed, SPEED_LIMIT);
         this.progress = progress;
@@ -55,10 +55,10 @@ public class ItemInPipe {
     }
 
     public ItemInPipe(ItemStack stack, Direction fromDirection, Direction toDirection, boolean ejecting) {
-        this(stack, PipeConfig.initialItemPacketSpeed(), (short) 0, fromDirection, toDirection, ejecting, (short) 0);
+        this(stack, PipeConfig.initialItemPacketSpeed(), 0, fromDirection, toDirection, ejecting, 0L);
     }
 
-    public ItemInPipe(ItemStack stack, short speed, short progress, byte fromDirection, byte targetDirection, boolean ejecting, short age) {
+    public ItemInPipe(ItemStack stack, short speed, int progress, byte fromDirection, byte targetDirection, boolean ejecting, long age) {
         this(stack, speed, progress, Direction.from3DDataValue(fromDirection), Direction.from3DDataValue(targetDirection), ejecting, age);
     }
 
@@ -105,7 +105,7 @@ public class ItemInPipe {
         this.stack = stack;
     }
 
-    public short getProgress() {
+    public int getProgress() {
         return this.progress;
     }
 
@@ -139,7 +139,7 @@ public class ItemInPipe {
         return this.speed;
     }
 
-    public short getAge() {
+    public long getAge() {
         return this.age;
     }
 
