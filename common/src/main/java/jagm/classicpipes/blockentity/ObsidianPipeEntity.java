@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.util.ItemInPipe;
 import net.minecraft.core.BlockPos;
@@ -45,12 +47,12 @@ public class ObsidianPipeEntity extends ItemPipeEntity {
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.DEFAULT_SPEED;
+        return PipeConfig.obsidianSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION;
+        return PipeConfig.obsidianAcceleration();
     }
 
 }
