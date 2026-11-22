@@ -27,6 +27,7 @@ public final class PipeConfig {
     private static Map<String, String> defaults() {
         Map<String, String> p = new LinkedHashMap<>();
         p.put("items.speed_limit", "1024");
+        p.put("items.initial_packet_speed", "64");
         addItem(p, "basic", 64, 1);
         addItem(p, "copper", 64, 1);
         p.put("items.copper.extract_amount", "1");
@@ -190,6 +191,7 @@ public final class PipeConfig {
     private static short speed(String id, int fallback) { return (short) get("items." + id + ".speed", fallback, 1, speedLimit()); }
     private static short acceleration(String id, int fallback) { return (short) get("items." + id + ".acceleration", fallback, 1, 8192); }
     public static int speedLimit() { return get("items.speed_limit", 1024, 1, 32767); }
+    public static short initialItemPacketSpeed() { return (short) get("items.initial_packet_speed", 64, 1, speedLimit()); }
     public static short basicSpeed() { return speed("basic", 64); }
     public static short basicAcceleration() { return acceleration("basic", 1); }
     public static short copperSpeed() { return speed("copper", 64); }
