@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.inventory.container.DirectionalFilterContainer;
 import jagm.classicpipes.inventory.container.Filter;
@@ -121,5 +123,8 @@ public class DiamondPipeEntity extends RoundRobinPipeEntity implements MenuProvi
     public boolean shouldMatchComponents() {
         return this.filter.shouldMatchComponents();
     }
+
+    @Override public short getTargetSpeed() { return PipeConfig.diamondSpeed(); }
+    @Override public short getAcceleration() { return PipeConfig.diamondAcceleration(); }
 
 }
