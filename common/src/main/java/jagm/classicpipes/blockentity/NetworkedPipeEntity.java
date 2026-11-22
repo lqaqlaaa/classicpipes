@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.block.ContainerAdjacentNetworkedPipeBlock;
 import jagm.classicpipes.block.NetworkedPipeBlock;
 import jagm.classicpipes.inventory.container.Filter;
@@ -390,12 +392,12 @@ public abstract class NetworkedPipeEntity extends RoundRobinPipeEntity {
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.SPEED_LIMIT;
+        return PipeConfig.networkSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION * 64;
+        return PipeConfig.networkAcceleration();
     }
 
     public boolean isDefaultRoute() {
