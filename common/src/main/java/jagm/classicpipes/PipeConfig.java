@@ -108,8 +108,8 @@ public final class PipeConfig {
             w.write("# 数值越大通常代表速度/数量/时间越大；具体影响见每项说明。");
             w.newLine();
             section(w, "物品管道：传输速度与加速度");
-            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32767。");
-            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
+            setting(w, "items.speed_limit", "1024", "所有物品与流体包共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32767。");
+            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–当前 items.speed_limit（该上限最大为 32767）。");
             itemSettings(w, "basic", "普通/基础物品管道");
             itemSettings(w, "copper", "铜质物品管道");
             setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–2147483647。");
@@ -177,7 +177,7 @@ public final class PipeConfig {
 
     private static void itemSettings(BufferedWriter w, String id, String name) throws IOException {
         setting(w, "items." + id + ".speed", id.equals("golden") || id.equals("network") ? "1024" : id.equals("advanced_copper") ? "512" : "64",
-            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
+            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–当前 items.speed_limit（该上限最大为 32767）。");
         String acceleration = id.equals("network") || id.equals("advanced_copper") || id.equals("golden") ? (id.equals("network") ? "64" : "16") : "1";
         setting(w, "items." + id + ".acceleration", acceleration,
             name + "的加速度，即每刻调整物品速度的幅度。数值越大，物品越快达到目标速度。单位：内部速度单位/刻。范围：1–32767。");
