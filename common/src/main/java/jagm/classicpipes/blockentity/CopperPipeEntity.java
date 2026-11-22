@@ -29,7 +29,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
 
     public CopperPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = (byte) PipeConfig.itemCopperInterval();
+        this.cooldown = (byte) this.extractionIntervalTicks();
     }
 
     @Override
@@ -52,6 +52,8 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
 
     @Override
     public short getAcceleration() { return (short) PipeConfig.itemCopperAcceleration(); }
+
+    protected int extractionIntervalTicks() { return PipeConfig.itemCopperInterval(); }
 
     protected int extractAmount() {
         return PipeConfig.itemCopperExtractAmount();
