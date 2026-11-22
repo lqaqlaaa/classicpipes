@@ -1,6 +1,7 @@
 package jagm.classicpipes.blockentity;
 
 import jagm.classicpipes.ClassicPipes;
+import jagm.classicpipes.PipeConfig;
 import jagm.classicpipes.util.FluidInPipe;
 import jagm.classicpipes.util.ItemInPipe;
 import net.minecraft.core.BlockPos;
@@ -11,9 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.Iterator;
 
 public class ObsidianFluidPipeEntity extends FluidPipeEntity {
-
-    private static final int MIN_GURGLE_DELAY = 80;
-    private static final int MAX_GURGLE_DELAY = 160;
 
     private long lastGurgle;
 
@@ -34,7 +32,7 @@ public class ObsidianFluidPipeEntity extends FluidPipeEntity {
                     iterator.remove();
                     sendBlockUpdate = true;
                     long timeSinceLastGurgle = level.getGameTime() - this.lastGurgle;
-                    if (timeSinceLastGurgle > MAX_GURGLE_DELAY || (timeSinceLastGurgle > MIN_GURGLE_DELAY && level.getRandom().nextInt(10) == 0)) {
+                    if (timeSinceLastGurgle > PipeConfig.obsidianGurgleMaxDelayTicks() || (timeSinceLastGurgle > PipeConfig.obsidianGurgleMinDelayTicks() && level.getRandom().nextInt(PipeConfig.obsidianGurgleChanceDenominator()) == 0)) {
                         level.playSound(null, pos, ClassicPipes.OBSIDIAN_FLUID_PIPE_GURGLE, SoundSource.BLOCKS);
                         this.lastGurgle = level.getGameTime();
                     }
