@@ -189,6 +189,12 @@ public final class PipeConfig {
         } catch (RuntimeException exception) { return fallback; }
     }
 
+    private static long getLong(String key, long fallback, long min, long max) {
+        try {
+            return Math.max(min, Math.min(max, Long.parseLong(VALUES.getProperty(key, Long.toString(fallback)).trim())));
+        } catch (RuntimeException exception) { return fallback; }
+    }
+
     private static short speed(String id, int fallback) { return (short) get("items." + id + ".speed", fallback, 1, speedLimit()); }
     private static short acceleration(String id, int fallback) { return (short) get("items." + id + ".acceleration", fallback, 1, Short.MAX_VALUE); }
     public static int speedLimit() { return get("items.speed_limit", 1024, 1, Short.MAX_VALUE); }
@@ -231,28 +237,21 @@ public final class PipeConfig {
     public static int advancedCopperFluidExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, Integer.MAX_VALUE); }
     public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
 
-    public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Integer.MAX_VALUE); }
-    public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Integer.MAX_VALUE); }
-    public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Integer.MAX_VALUE); }
-    public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Integer.MAX_VALUE); }
-    public static int clientCacheUpdateIntervalTicks() { return get("network.client_cache_update_interval_ticks", 40, 1, Integer.MAX_VALUE); }
+    public static long itemPacketLifetimeTicks() { return getLong("items.packet_lifetime_ticks", 24000L, 1L, Long.MAX_VALUE - 1); }
+    public static long networkRequestTimeoutTicks() { return getLong("items.network_request_timeout_ticks", 24000L, 1L, Long.MAX_VALUE - 1); }
+    public static long scheduledRouteTimeoutTicks() { return getLong("items.scheduled_route_timeout_ticks", 1200L, 1L, Long.MAX_VALUE); }
+    public static long routingOverflowCheckIntervalTicks() { return getLong("items.routing_overflow_check_interval_ticks", 100L, 1L, Long.MAX_VALUE); }
+    public static long clientCacheUpdateIntervalTicks() { return getLong("network.client_cache_update_interval_ticks", 40L, 1L, Long.MAX_VALUE); }
     public static int pipeUpdateScanMinimum() { return get("network.pipe_update_scan_minimum", 100, 1, Integer.MAX_VALUE); }
 
     /** 配方管道检查相邻容器中目标产物的间隔，单位为游戏刻。 */
-    public static int recipeCrafterPollIntervalTicks() {
-        return get("items.recipe_crafter_poll_interval_ticks", 8, 1, Integer.MAX_VALUE);
-    }
+    public static long recipeCrafterPollIntervalTicks() { return getLong("items.recipe_crafter_poll_interval_ticks", 8L, 1L, Long.MAX_VALUE); }
 
     /** 黑曜石流体管道咕噜音效允许等待的最短时间，单位为游戏刻。 */
-    public static int obsidianGurgleMinDelayTicks() {
-        return get("fluids.obsidian.gurgle_min_delay_ticks", 80, 1, Integer.MAX_VALUE);
-    }
+    public static long obsidianGurgleMinDelayTicks() { return getLong("fluids.obsidian.gurgle_min_delay_ticks", 80L, 1L, Long.MAX_VALUE); }
 
     /** 黑曜石流体管道咕噜音效允许等待的最长时间，单位为游戏刻。 */
-    public static int obsidianGurgleMaxDelayTicks() {
-        int minimum = obsidianGurgleMinDelayTicks();
-        return get("fluids.obsidian.gurgle_max_delay_ticks", 160, minimum, Integer.MAX_VALUE);
-    }
+    public static long obsidianGurgleMaxDelayTicks() { long minimum = obsidianGurgleMinDelayTicks(); return getLong("fluids.obsidian.gurgle_max_delay_ticks", 160L, minimum, Long.MAX_VALUE); }
 
     /** 黑曜石流体管道超过最短间隔后，每次检查播放音效的概率分母。 */
     public static int obsidianGurgleChanceDenominator() {
