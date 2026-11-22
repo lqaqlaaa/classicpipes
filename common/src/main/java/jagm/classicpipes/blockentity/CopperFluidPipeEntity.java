@@ -19,9 +19,7 @@ import java.util.function.Predicate;
 
 public class CopperFluidPipeEntity extends FluidPipeEntity {
 
-    private static final byte DEFAULT_COOLDOWN = 4;
-
-    private byte cooldown;
+    private int cooldown;
 
     public CopperFluidPipeEntity(BlockPos pos, BlockState state) {
         this(ClassicPipes.COPPER_FLUID_PIPE_ENTITY, pos, state);
@@ -29,7 +27,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
 
     public CopperFluidPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = (byte) this.extractionIntervalTicks();
+        this.cooldown = this.extractionIntervalTicks();
     }
 
     @Override
@@ -61,13 +59,13 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
     @Override
     protected void loadAdditional(CompoundTag valueInput, HolderLookup.Provider registries) {
         super.loadAdditional(valueInput, registries);
-        this.cooldown = valueInput.getByte("cooldown");
+        this.cooldown = valueInput.getInt("cooldown");
     }
 
     @Override
     protected void saveAdditional(CompoundTag valueOutput, HolderLookup.Provider registries) {
         super.saveAdditional(valueOutput, registries);
-        valueOutput.putByte("cooldown", this.cooldown);
+        valueOutput.putInt("cooldown", this.cooldown);
     }
 
 }
