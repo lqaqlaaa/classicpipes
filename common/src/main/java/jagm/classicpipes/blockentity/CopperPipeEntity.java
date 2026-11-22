@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.block.CopperPipeBlock;
 import jagm.classicpipes.services.Services;
@@ -27,7 +29,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
 
     public CopperPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = DEFAULT_COOLDOWN;
+        this.cooldown = (byte) this.extractionIntervalTicks();
     }
 
     @Override
@@ -46,8 +48,19 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
     }
 
     protected int extractAmount() {
-        return 1;
+        return PipeConfig.copperExtractAmount();
     }
+
+    protected int extractionIntervalTicks() {
+        return PipeConfig.copperExtractInterval();
+    }
+
+    @Override
+    public short getTargetSpeed() { return PipeConfig.copperSpeed(); }
+
+    @Override
+    public short getAcceleration() { return PipeConfig.copperAcceleration(); }
+
 
     protected Predicate<ItemStack> filterPredicate() {
         return stack -> true;
