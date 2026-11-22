@@ -108,15 +108,15 @@ public final class PipeConfig {
             w.write("# 数值越大通常代表速度/数量/时间越大；具体影响见每项说明。");
             w.newLine();
             section(w, "物品管道：传输速度与加速度");
-            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32766。");
-            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
+            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–2147483647。");
+            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–2147483647。");
             itemSettings(w, "basic", "普通/基础物品管道");
             itemSettings(w, "copper", "铜质物品管道");
-            setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–1000000。");
-            setting(w, "items.copper.extract_interval_ticks", "9", "铜质物品管道两次抽取之间的间隔。单位：游戏刻（20刻=1秒）。数值越小，抽取越频繁。范围：1–127。");
+            setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–2147483647。");
+            setting(w, "items.copper.extract_interval_ticks", "9", "铜质物品管道两次抽取之间的间隔。单位：游戏刻（20刻=1秒）。数值越小，抽取越频繁。范围：1–2147483647。");
             itemSettings(w, "advanced_copper", "高级铜质物品管道");
-            setting(w, "items.advanced_copper.extract_amount", "64", "高级铜质物品管道每次从相邻容器抽取的物品数量。单位：个。范围：1–1000000。");
-            setting(w, "items.advanced_copper.extract_interval_ticks", "9", "高级铜质物品管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–127。");
+            setting(w, "items.advanced_copper.extract_amount", "64", "高级铜质物品管道每次从相邻容器抽取的物品数量。单位：个。范围：1–2147483647。");
+            setting(w, "items.advanced_copper.extract_interval_ticks", "9", "高级铜质物品管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–2147483647。");
             itemSettings(w, "golden", "金质物品管道");
             itemSettings(w, "iron", "铁质物品管道");
             itemSettings(w, "diamond", "钻石物品管道");
@@ -126,28 +126,28 @@ public final class PipeConfig {
             itemSettings(w, "bone", "骨质物品管道");
             itemSettings(w, "network", "网络/请求/存储等网络型物品管道");
             section(w, "物品与网络请求生命周期");
-            setting(w, "items.packet_lifetime_ticks", "24000", "物品在管道内部允许存在的最长时间，超时后物品包会被清除。单位：游戏刻；24000刻约20分钟。范围：1–32766。");
-            setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–32766。");
-            setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–32766。");
-            setting(w, "items.routing_overflow_check_interval_ticks", "100", "路由管道检查溢出处理的间隔。单位：游戏刻。数值越小检查越频繁，但会增加检查开销。范围：1–32767。");
-            setting(w, "items.recipe_crafter_poll_interval_ticks", "8", "配方管道等待合成时，轮询相邻容器是否出现目标产物的间隔。单位：游戏刻。数值越小检查越频繁，但会增加容器查询开销。范围：1–127。");
+            setting(w, "items.packet_lifetime_ticks", "24000", "物品在管道内部允许存在的最长时间，超时后物品包会被清除。单位：游戏刻；24000刻约20分钟。范围：1–2147483647。");
+            setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–2147483647。");
+            setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–2147483647。");
+            setting(w, "items.routing_overflow_check_interval_ticks", "100", "路由管道检查溢出处理的间隔。单位：游戏刻。数值越小检查越频繁，但会增加检查开销。范围：1–2147483647。");
+            setting(w, "items.recipe_crafter_poll_interval_ticks", "8", "配方管道等待合成时，轮询相邻容器是否出现目标产物的间隔。单位：游戏刻。数值越小检查越频繁，但会增加容器查询开销。范围：1–2147483647。");
             section(w, "网络更新与缓存");
-            setting(w, "network.client_cache_update_interval_ticks", "40", "网络缓存变化后，向客户端同步更新的冷却间隔。单位：游戏刻；40刻约2秒。数值越小界面数据更新越及时，但同步更频繁。范围：1–127。");
-            setting(w, "network.pipe_update_scan_minimum", "100", "网络每轮随机选择待更新管道时使用的最小扫描基数，属于网络更新调度参数。数值越大，单轮更新抽样更分散。范围：1–1000000。");
+            setting(w, "network.client_cache_update_interval_ticks", "40", "网络缓存变化后，向客户端同步更新的冷却间隔。单位：游戏刻；40刻约2秒。数值越小界面数据更新越及时，但同步更频繁。范围：1–2147483647。");
+            setting(w, "network.pipe_update_scan_minimum", "100", "网络每轮随机选择待更新管道时使用的最小扫描基数，属于网络更新调度参数。数值越大，单轮更新抽样更分散。范围：1–2147483647。");
             section(w, "流体管道");
-            setting(w, "fluids.capacity_mb", "1000", "每一段流体管道内部可储存的流体总容量。单位：毫桶（mB）。提高可储存更多流体。范围：1–1000000000。");
-            setting(w, "fluids.minimum_packet_mb", "20", "流体管道拆分/传输流体包时使用的最小包量。单位：mB。提高会减少小流体包数量，但可能延后少量流体的传输。范围：1–当前容量。");
-            setting(w, "fluids.speed_thin", "256", "细流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
-            setting(w, "fluids.speed_normal", "128", "普通流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
-            setting(w, "fluids.speed_thick", "64", "浓稠流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
-            setting(w, "fluids.acceleration", "1", "所有流体管道中流体包每刻调整速度的幅度。数值越大，流体包越快达到目标速度。单位：内部速度单位/刻。范围：1–8192。");
-            setting(w, "fluids.copper.extract_amount_mb", "125", "铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–1000000000。");
-            setting(w, "fluids.copper.extract_interval_ticks", "5", "铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–127。");
-            setting(w, "fluids.advanced_copper.extract_amount_mb", "500", "高级铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–1000000000。");
-            setting(w, "fluids.advanced_copper.extract_interval_ticks", "5", "高级铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–127。");
-            setting(w, "fluids.obsidian.gurgle_min_delay_ticks", "80", "黑曜石流体管道两次咕噜音效之间的最短间隔。单位：游戏刻。数值越大，音效越不频繁。范围：1–32767。");
-            setting(w, "fluids.obsidian.gurgle_max_delay_ticks", "160", "黑曜石流体管道触发咕噜音效前允许等待的最长间隔。单位：游戏刻。达到该时间后必定播放音效；必须不小于最短间隔。范围：1–32767。");
-            setting(w, "fluids.obsidian.gurgle_chance_denominator", "10", "黑曜石流体管道超过最短音效间隔后，每次检查播放音效的概率分母。默认10代表每次检查有1/10概率播放；数值越大越不容易提前播放。范围：1–1000000。");
+            setting(w, "fluids.capacity_mb", "1000", "每一段流体管道内部可储存的流体总容量。单位：毫桶（mB）。提高可储存更多流体。范围：1–2147483647。");
+            setting(w, "fluids.minimum_packet_mb", "20", "流体管道拆分/传输流体包时使用的最小包量。单位：mB。提高会减少小流体包数量，但可能延后少量流体的传输。范围：1–当前容量（最大 2147483647 mB）。");
+            setting(w, "fluids.speed_thin", "256", "细流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
+            setting(w, "fluids.speed_normal", "128", "普通流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
+            setting(w, "fluids.speed_thick", "64", "浓稠流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
+            setting(w, "fluids.acceleration", "1", "所有流体管道中流体包每刻调整速度的幅度。数值越大，流体包越快达到目标速度。单位：内部速度单位/刻。范围：1–32767。");
+            setting(w, "fluids.copper.extract_amount_mb", "125", "铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–2147483647。");
+            setting(w, "fluids.copper.extract_interval_ticks", "5", "铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–2147483647。");
+            setting(w, "fluids.advanced_copper.extract_amount_mb", "500", "高级铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–2147483647。");
+            setting(w, "fluids.advanced_copper.extract_interval_ticks", "5", "高级铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–2147483647。");
+            setting(w, "fluids.obsidian.gurgle_min_delay_ticks", "80", "黑曜石流体管道两次咕噜音效之间的最短间隔。单位：游戏刻。数值越大，音效越不频繁。范围：1–2147483647。");
+            setting(w, "fluids.obsidian.gurgle_max_delay_ticks", "160", "黑曜石流体管道触发咕噜音效前允许等待的最长间隔。单位：游戏刻。达到该时间后必定播放音效；必须不小于最短间隔。范围：1–2147483647。");
+            setting(w, "fluids.obsidian.gurgle_chance_denominator", "10", "黑曜石流体管道超过最短音效间隔后，每次检查播放音效的概率分母。默认10代表每次检查有1/10概率播放；数值越大越不容易提前播放。范围：1–2147483647。");
 
             // Keep unrecognized user-added keys rather than silently deleting them.
             TreeMap<String, String> extra = new TreeMap<>();
@@ -177,10 +177,10 @@ public final class PipeConfig {
 
     private static void itemSettings(BufferedWriter w, String id, String name) throws IOException {
         setting(w, "items." + id + ".speed", id.equals("golden") || id.equals("network") ? "1024" : id.equals("advanced_copper") ? "512" : "64",
-            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
+            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–2147483647。");
         String acceleration = id.equals("network") || id.equals("advanced_copper") || id.equals("golden") ? (id.equals("network") ? "64" : "16") : "1";
         setting(w, "items." + id + ".acceleration", acceleration,
-            name + "的加速度，即每刻调整物品速度的幅度。数值越大，物品越快达到目标速度。单位：内部速度单位/刻。范围：1–8192。");
+            name + "的加速度，即每刻调整物品速度的幅度。数值越大，物品越快达到目标速度。单位：内部速度单位/刻。范围：1–32767。");
     }
 
     private static int get(String key, int fallback, int min, int max) {
@@ -190,19 +190,19 @@ public final class PipeConfig {
     }
 
     private static short speed(String id, int fallback) { return (short) get("items." + id + ".speed", fallback, 1, speedLimit()); }
-    private static short acceleration(String id, int fallback) { return (short) get("items." + id + ".acceleration", fallback, 1, 8192); }
-    public static int speedLimit() { return get("items.speed_limit", 1024, 1, 32767); }
+    private static short acceleration(String id, int fallback) { return (short) get("items." + id + ".acceleration", fallback, 1, Short.MAX_VALUE); }
+    public static int speedLimit() { return get("items.speed_limit", 1024, 1, Short.MAX_VALUE); }
     public static short initialItemPacketSpeed() { return (short) get("items.initial_packet_speed", 64, 1, speedLimit()); }
     public static short basicSpeed() { return speed("basic", 64); }
     public static short basicAcceleration() { return acceleration("basic", 1); }
     public static short copperSpeed() { return speed("copper", 64); }
     public static short copperAcceleration() { return acceleration("copper", 1); }
-    public static int copperExtractAmount() { return get("items.copper.extract_amount", 1, 1, 1_000_000); }
-    public static int copperExtractInterval() { return get("items.copper.extract_interval_ticks", 9, 1, 127); }
+    public static int copperExtractAmount() { return get("items.copper.extract_amount", 1, 1, Integer.MAX_VALUE); }
+    public static int copperExtractInterval() { return get("items.copper.extract_interval_ticks", 9, 1, Integer.MAX_VALUE); }
     public static short advancedCopperSpeed() { return speed("advanced_copper", 512); }
     public static short advancedCopperAcceleration() { return acceleration("advanced_copper", 16); }
-    public static int advancedCopperExtractAmount() { return get("items.advanced_copper.extract_amount", 64, 1, 1_000_000); }
-    public static int advancedCopperExtractInterval() { return get("items.advanced_copper.extract_interval_ticks", 9, 1, 127); }
+    public static int advancedCopperExtractAmount() { return get("items.advanced_copper.extract_amount", 64, 1, Integer.MAX_VALUE); }
+    public static int advancedCopperExtractInterval() { return get("items.advanced_copper.extract_interval_ticks", 9, 1, Integer.MAX_VALUE); }
     public static short goldenSpeed() { return speed("golden", 1024); }
     public static short goldenAcceleration() { return acceleration("golden", 16); }
     public static short ironSpeed() { return speed("iron", 64); }
@@ -220,42 +220,42 @@ public final class PipeConfig {
     public static short networkSpeed() { return speed("network", 1024); }
     public static short networkAcceleration() { return acceleration("network", 64); }
 
-    public static int fluidCapacity() { return get("fluids.capacity_mb", 1000, 1, 1_000_000_000); }
+    public static int fluidCapacity() { return get("fluids.capacity_mb", 1000, 1, Integer.MAX_VALUE); }
     public static int fluidMinimumPacket() { return get("fluids.minimum_packet_mb", 20, 1, fluidCapacity()); }
-    public static short fluidThinSpeed() { return (short) get("fluids.speed_thin", 256, 1, speedLimit()); }
-    public static short fluidNormalSpeed() { return (short) get("fluids.speed_normal", 128, 1, speedLimit()); }
-    public static short fluidThickSpeed() { return (short) get("fluids.speed_thick", 64, 1, speedLimit()); }
-    public static short fluidAcceleration() { return (short) get("fluids.acceleration", 1, 1, 8192); }
-    public static int copperFluidExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, 1_000_000_000); }
-    public static int copperFluidExtractInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, 127); }
-    public static int advancedCopperFluidExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, 1_000_000_000); }
-    public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, 127); }
+    public static short fluidThinSpeed() { return (short) get("fluids.speed_thin", 256, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
+    public static short fluidNormalSpeed() { return (short) get("fluids.speed_normal", 128, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
+    public static short fluidThickSpeed() { return (short) get("fluids.speed_thick", 64, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
+    public static short fluidAcceleration() { return (short) get("fluids.acceleration", 1, 1, Short.MAX_VALUE); }
+    public static int copperFluidExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, Integer.MAX_VALUE); }
+    public static int copperFluidExtractInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
+    public static int advancedCopperFluidExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, Integer.MAX_VALUE); }
+    public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
 
-    public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Short.MAX_VALUE - 1); }
-    public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Short.MAX_VALUE - 1); }
-    public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Short.MAX_VALUE - 1); }
-    public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Short.MAX_VALUE - 1); }
-    public static int clientCacheUpdateIntervalTicks() { return get("network.client_cache_update_interval_ticks", 40, 1, 127); }
-    public static int pipeUpdateScanMinimum() { return get("network.pipe_update_scan_minimum", 100, 1, 1_000_000); }
+    public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Integer.MAX_VALUE); }
+    public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Integer.MAX_VALUE); }
+    public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Integer.MAX_VALUE); }
+    public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Integer.MAX_VALUE); }
+    public static int clientCacheUpdateIntervalTicks() { return get("network.client_cache_update_interval_ticks", 40, 1, Integer.MAX_VALUE); }
+    public static int pipeUpdateScanMinimum() { return get("network.pipe_update_scan_minimum", 100, 1, Integer.MAX_VALUE); }
 
     /** 配方管道检查相邻容器中目标产物的间隔，单位为游戏刻。 */
     public static int recipeCrafterPollIntervalTicks() {
-        return get("items.recipe_crafter_poll_interval_ticks", 8, 1, 127);
+        return get("items.recipe_crafter_poll_interval_ticks", 8, 1, Integer.MAX_VALUE);
     }
 
     /** 黑曜石流体管道咕噜音效允许等待的最短时间，单位为游戏刻。 */
     public static int obsidianGurgleMinDelayTicks() {
-        return get("fluids.obsidian.gurgle_min_delay_ticks", 80, 1, Short.MAX_VALUE);
+        return get("fluids.obsidian.gurgle_min_delay_ticks", 80, 1, Integer.MAX_VALUE);
     }
 
     /** 黑曜石流体管道咕噜音效允许等待的最长时间，单位为游戏刻。 */
     public static int obsidianGurgleMaxDelayTicks() {
         int minimum = obsidianGurgleMinDelayTicks();
-        return get("fluids.obsidian.gurgle_max_delay_ticks", 160, minimum, Short.MAX_VALUE);
+        return get("fluids.obsidian.gurgle_max_delay_ticks", 160, minimum, Integer.MAX_VALUE);
     }
 
     /** 黑曜石流体管道超过最短间隔后，每次检查播放音效的概率分母。 */
     public static int obsidianGurgleChanceDenominator() {
-        return get("fluids.obsidian.gurgle_chance_denominator", 10, 1, 1_000_000);
+        return get("fluids.obsidian.gurgle_chance_denominator", 10, 1, Integer.MAX_VALUE);
     }
 }
