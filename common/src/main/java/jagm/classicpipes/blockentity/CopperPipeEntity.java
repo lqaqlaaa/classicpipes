@@ -42,7 +42,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = DEFAULT_COOLDOWN;
+                this.cooldown = (byte) this.extractionIntervalTicks();
             }
         }
     }
