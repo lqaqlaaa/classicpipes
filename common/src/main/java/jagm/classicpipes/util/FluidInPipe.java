@@ -11,21 +11,21 @@ public class FluidInPipe {
             instance.group(
                     Codec.INT.fieldOf("amount").orElse(0).forGetter(FluidInPipe::getAmount),
                     Codec.SHORT.fieldOf("speed").orElse((short) 0).forGetter(FluidInPipe::getSpeed),
-                    Codec.SHORT.fieldOf("progress").orElse((short) 0).forGetter(FluidInPipe::getProgress),
+                    Codec.INT.fieldOf("progress").orElse(0).forGetter(FluidInPipe::getProgress),
                     Codec.BYTE.fieldOf("from_direction").orElse((byte) 0).forGetter(fluidPacket -> (byte) fluidPacket.getFromDirection().get3DDataValue()),
                     Codec.BYTE.fieldOf("target_direction").orElse((byte) 0).forGetter(fluidPacket -> (byte) fluidPacket.getTargetDirection().get3DDataValue()),
-                    Codec.SHORT.fieldOf("age").orElse((short) 0).forGetter(FluidInPipe::getAge)
+                    Codec.LONG.fieldOf("age").orElse(0L).forGetter(FluidInPipe::getAge)
             ).apply(instance, FluidInPipe::new)
     );
 
     private int amount;
     private short speed;
-    private short progress;
+    private int progress;
     private Direction fromDirection;
     private Direction targetDirection;
-    private short age;
+    private long age;
 
-    public FluidInPipe(int amount, short speed, short progress, Direction fromDirection, Direction targetDirection, short age) {
+    public FluidInPipe(int amount, short speed, short progress, Direction fromDirection, Direction targetDirection, long age) {
         this.amount = amount;
         this.speed = speed;
         this.progress = progress;
@@ -34,7 +34,7 @@ public class FluidInPipe {
         this.age = age;
     }
 
-    public FluidInPipe(int amount, short speed, short progress, byte fromDirection, byte targetDirection, short age) {
+    public FluidInPipe(int amount, short speed, int progress, byte fromDirection, byte targetDirection, long age) {
         this(amount, speed, progress, Direction.from3DDataValue(fromDirection), Direction.from3DDataValue(targetDirection), age);
     }
 
@@ -82,7 +82,7 @@ public class FluidInPipe {
         return this.speed;
     }
 
-    public short getProgress() {
+    public int getProgress() {
         return this.progress;
     }
 
@@ -98,7 +98,7 @@ public class FluidInPipe {
         this.targetDirection = targetDirection;
     }
 
-    public short getAge() {
+    public long getAge() {
         return this.age;
     }
 
