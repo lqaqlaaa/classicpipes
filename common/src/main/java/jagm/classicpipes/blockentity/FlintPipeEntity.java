@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.util.ItemInPipe;
 import net.minecraft.core.BlockPos;
@@ -43,5 +45,8 @@ public class FlintPipeEntity extends RoundRobinPipeEntity {
         DispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
         return !stack.isItemEnabled(level.enabledFeatures()) ? defaultBehavior : DispenserBlock.DISPENSER_REGISTRY.get(stack.getItem());
     }
+
+    @Override public short getTargetSpeed() { return PipeConfig.flintSpeed(); }
+    @Override public short getAcceleration() { return PipeConfig.flintAcceleration(); }
 
 }
