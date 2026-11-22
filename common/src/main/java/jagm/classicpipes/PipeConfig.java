@@ -109,6 +109,7 @@ public final class PipeConfig {
             w.newLine();
             section(w, "物品管道：传输速度与加速度");
             setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32766。");
+            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
             itemSettings(w, "basic", "普通/基础物品管道");
             itemSettings(w, "copper", "铜质物品管道");
             setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–1000000。");
@@ -236,4 +237,25 @@ public final class PipeConfig {
     public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Short.MAX_VALUE - 1); }
     public static int clientCacheUpdateIntervalTicks() { return get("network.client_cache_update_interval_ticks", 40, 1, 127); }
     public static int pipeUpdateScanMinimum() { return get("network.pipe_update_scan_minimum", 100, 1, 1_000_000); }
+
+    /** 配方管道检查相邻容器中目标产物的间隔，单位为游戏刻。 */
+    public static int recipeCrafterPollIntervalTicks() {
+        return get("items.recipe_crafter_poll_interval_ticks", 8, 1, 127);
+    }
+
+    /** 黑曜石流体管道咕噜音效允许等待的最短时间，单位为游戏刻。 */
+    public static int obsidianGurgleMinDelayTicks() {
+        return get("fluids.obsidian.gurgle_min_delay_ticks", 80, 1, Short.MAX_VALUE);
+    }
+
+    /** 黑曜石流体管道咕噜音效允许等待的最长时间，单位为游戏刻。 */
+    public static int obsidianGurgleMaxDelayTicks() {
+        int minimum = obsidianGurgleMinDelayTicks();
+        return get("fluids.obsidian.gurgle_max_delay_ticks", 160, minimum, Short.MAX_VALUE);
+    }
+
+    /** 黑曜石流体管道超过最短间隔后，每次检查播放音效的概率分母。 */
+    public static int obsidianGurgleChanceDenominator() {
+        return get("fluids.obsidian.gurgle_chance_denominator", 10, 1, 1_000_000);
+    }
 }
