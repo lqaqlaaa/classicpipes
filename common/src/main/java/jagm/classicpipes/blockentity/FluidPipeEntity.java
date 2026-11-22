@@ -68,7 +68,7 @@ public class FluidPipeEntity extends PipeEntity {
                     this.tickAdded.remove(fluidPacket);
                 }
                 fluidPacket.move(this.getTargetSpeed(), this.getAcceleration());
-                if (fluidPacket.getAge() > ItemInPipe.DESPAWN_AGE) {
+                if (fluidPacket.getAge() > PipeConfig.itemPacketLifetimeTicks()) {
                     iterator.remove();
                     sendBlockUpdate = true;
                     continue;
