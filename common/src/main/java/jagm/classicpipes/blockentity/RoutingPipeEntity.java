@@ -43,7 +43,7 @@ public class RoutingPipeEntity extends NetworkedPipeEntity implements MenuProvid
     @Override
     public void tickServer(ServerLevel level, BlockPos pos, BlockState state) {
         super.tickServer(level, pos, state);
-        if (this.overflowCheck++ > 100) {
+        if (this.overflowCheck++ >= jagm.classicpipes.PipeConfig.routingOverflowCheckIntervalTicks()) {
             this.overflowCheck = 0;
             this.cannotFit.clear();
         }
