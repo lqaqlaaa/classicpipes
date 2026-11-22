@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.inventory.container.Filter;
 import jagm.classicpipes.inventory.container.SingleItemFilterContainer;
@@ -30,7 +32,7 @@ public class AdvancedCopperPipeEntity extends CopperPipeEntity implements MenuPr
 
     @Override
     protected int extractAmount() {
-        return 64;
+        return PipeConfig.itemAdvancedCopperExtractAmount();
     }
 
     @Override
@@ -50,12 +52,12 @@ public class AdvancedCopperPipeEntity extends CopperPipeEntity implements MenuPr
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.DEFAULT_SPEED * 8;
+        return (short) PipeConfig.itemAdvancedCopperSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION * 16;
+        return (short) PipeConfig.itemAdvancedCopperAcceleration();
     }
 
     public boolean shouldMatchComponents() {
