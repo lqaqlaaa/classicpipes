@@ -6,6 +6,10 @@ on:
       - 1.21.1-config
   workflow_dispatch:
 
+concurrency:
+  group: build-neoforge-1.21.1-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
