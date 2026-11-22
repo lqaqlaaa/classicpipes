@@ -60,7 +60,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
     @Override
     protected void loadAdditional(ValueInput valueInput) {
         super.loadAdditional(valueInput);
-        this.cooldown = valueInput.getByteOr("cooldown", DEFAULT_COOLDOWN);
+        this.cooldown = valueInput.getByteOr("cooldown", (byte) this.extractionIntervalTicks());
     }
 
     @Override
