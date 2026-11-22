@@ -126,8 +126,8 @@ public final class PipeConfig {
             itemSettings(w, "network", "网络/请求/存储等网络型物品管道");
             section(w, "物品与网络请求生命周期");
             setting(w, "items.packet_lifetime_ticks", "24000", "物品在管道内部允许存在的最长时间，超时后物品包会被清除。单位：游戏刻；24000刻约20分钟。范围：1–32766。");
-            setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–32767。");
-            setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–32767。");
+            setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–32766。");
+            setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–32766。");
             setting(w, "items.routing_overflow_check_interval_ticks", "100", "路由管道检查溢出处理的间隔。单位：游戏刻。数值越小检查越频繁，但会增加检查开销。范围：1–32767。");
             setting(w, "items.recipe_crafter_poll_interval_ticks", "8", "配方管道等待合成时，轮询相邻容器是否出现目标产物的间隔。单位：游戏刻。数值越小检查越频繁，但会增加容器查询开销。范围：1–127。")
             section(w, "网络更新与缓存");
