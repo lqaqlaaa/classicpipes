@@ -46,6 +46,7 @@ public final class PipeConfig {
         p.put("items.network_request_timeout_ticks", "24000");
         p.put("items.scheduled_route_timeout_ticks", "1200");
         p.put("items.routing_overflow_check_interval_ticks", "100");
+        p.put("items.recipe_crafter_poll_interval_ticks", "8");
         p.put("network.client_cache_update_interval_ticks", "40");
         p.put("network.pipe_update_scan_minimum", "100");
 
@@ -59,6 +60,9 @@ public final class PipeConfig {
         p.put("fluids.copper.extract_interval_ticks", "5");
         p.put("fluids.advanced_copper.extract_amount_mb", "500");
         p.put("fluids.advanced_copper.extract_interval_ticks", "5");
+        p.put("fluids.obsidian.gurgle_min_delay_ticks", "80");
+        p.put("fluids.obsidian.gurgle_max_delay_ticks", "160");
+        p.put("fluids.obsidian.gurgle_chance_denominator", "10");
         return p;
     }
 
@@ -124,6 +128,7 @@ public final class PipeConfig {
             setting(w, "items.network_request_timeout_ticks", "24000", "网络请求等待物品送达的最长时间，超时后请求被判定失败。单位：游戏刻。范围：1–32767。");
             setting(w, "items.scheduled_route_timeout_ticks", "1200", "网络中一条已安排路线的最长有效时间，超时后路线失效。单位：游戏刻；1200刻约1分钟。范围：1–32767。");
             setting(w, "items.routing_overflow_check_interval_ticks", "100", "路由管道检查溢出处理的间隔。单位：游戏刻。数值越小检查越频繁，但会增加检查开销。范围：1–32767。");
+            setting(w, "items.recipe_crafter_poll_interval_ticks", "8", "配方管道等待合成时，轮询相邻容器是否出现目标产物的间隔。单位：游戏刻。数值越小检查越频繁，但会增加容器查询开销。范围：1–127。")
             section(w, "网络更新与缓存");
             setting(w, "network.client_cache_update_interval_ticks", "40", "网络缓存变化后，向客户端同步更新的冷却间隔。单位：游戏刻；40刻约2秒。数值越小界面数据更新越及时，但同步更频繁。范围：1–127。");
             setting(w, "network.pipe_update_scan_minimum", "100", "网络每轮随机选择待更新管道时使用的最小扫描基数，属于网络更新调度参数。数值越大，单轮更新抽样更分散。范围：1–1000000。");
@@ -138,6 +143,9 @@ public final class PipeConfig {
             setting(w, "fluids.copper.extract_interval_ticks", "5", "铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–127。");
             setting(w, "fluids.advanced_copper.extract_amount_mb", "500", "高级铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–1000000000。");
             setting(w, "fluids.advanced_copper.extract_interval_ticks", "5", "高级铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–127。");
+            setting(w, "fluids.obsidian.gurgle_min_delay_ticks", "80", "黑曜石流体管道两次咕噜音效之间的最短间隔。单位：游戏刻。数值越大，音效越不频繁。范围：1–32767。");
+            setting(w, "fluids.obsidian.gurgle_max_delay_ticks", "160", "黑曜石流体管道触发咕噜音效前允许等待的最长间隔。单位：游戏刻。达到该时间后必定播放音效；必须不小于最短间隔。范围：1–32767。");
+            setting(w, "fluids.obsidian.gurgle_chance_denominator", "10", "黑曜石流体管道超过最短音效间隔后，每次检查播放音效的概率分母。默认10代表每次检查有1/10概率播放；数值越大越不容易提前播放。范围：1–1000000。")
 
             // Keep unrecognized user-added keys rather than silently deleting them.
             TreeMap<String, String> extra = new TreeMap<>();
