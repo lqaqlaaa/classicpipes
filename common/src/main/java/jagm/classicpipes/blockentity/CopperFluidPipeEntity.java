@@ -42,7 +42,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = (byte) PipeConfig.fluidCopperInterval();
+                this.cooldown = (byte) this.extractionIntervalTicks();
             }
         }
     }
