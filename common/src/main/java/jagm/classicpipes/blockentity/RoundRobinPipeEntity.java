@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.util.ItemInPipe;
 import jagm.classicpipes.util.MiscUtil;
@@ -93,12 +95,12 @@ public class RoundRobinPipeEntity extends ItemPipeEntity {
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.DEFAULT_SPEED;
+        return (short) PipeConfig.itemBasicSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION;
+        return (short) PipeConfig.itemBasicAcceleration();
     }
 
     @Override
