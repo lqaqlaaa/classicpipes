@@ -33,7 +33,7 @@ public class PipeNetwork {
     private final Set<RecipePipeEntity> recipePipes;
     private SortingMode sortingMode;
     private boolean cacheChanged;
-    private byte cacheCooldown;
+    private int cacheCooldown;
     private final List<RequestedItem> requestedItems;
 
     public PipeNetwork(BlockPos pos, SortingMode sortingMode) {
@@ -312,7 +312,7 @@ public class PipeNetwork {
                 stockingPipe.updateCache();
             }
             this.cacheChanged = false;
-            this.cacheCooldown = (byte) jagm.classicpipes.PipeConfig.clientCacheUpdateIntervalTicks();
+            this.cacheCooldown = jagm.classicpipes.PipeConfig.clientCacheUpdateIntervalTicks();
         } else if (this.cacheCooldown > 0) {
             this.cacheCooldown--;
         }
