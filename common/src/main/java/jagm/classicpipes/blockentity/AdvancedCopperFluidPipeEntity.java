@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.inventory.container.SingleItemFilterContainer;
 import jagm.classicpipes.inventory.menu.AdvancedCopperFluidPipeMenu;
@@ -29,7 +31,7 @@ public class AdvancedCopperFluidPipeEntity extends CopperFluidPipeEntity impleme
 
     @Override
     protected int extractAmount() {
-        return 500;
+        return PipeConfig.fluidAdvancedCopperExtractAmount();
     }
 
     @Override
