@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.services.Services;
 import jagm.classicpipes.util.FluidInPipe;
@@ -24,7 +26,11 @@ import java.util.*;
 public class FluidPipeEntity extends PipeEntity {
 
     public static final int CAPACITY = 1000;
+
+    public static int capacity() { return PipeConfig.fluidCapacity(); }
     public static final int MIN_PACKET_SIZE = 20;
+
+    public static int minimumPacketSize() { return PipeConfig.fluidMinimumPacket(); }
     private static final float MAX_RENDER_WIDTH_CHANGE = 1.0F / 64.0F;
 
     protected FluidWithData fluid;
@@ -81,7 +87,7 @@ public class FluidPipeEntity extends PipeEntity {
                                 nextPipe.insertFluidPacket(level, fluidPacket);
                             } else {
                                 remove = false;
-                                if (amountToPass >= FluidPipeEntity.MIN_PACKET_SIZE) {
+                                if (amountToPass >= FluidPipeEntity.minimumPacketSize()) {
                                     FluidInPipe newPacket = fluidPacket.copyWithAmount(amountToPass);
                                     newPacket.resetProgress(fluidPacket.getTargetDirection().getOpposite());
                                     nextPipe.insertFluidPacket(level, newPacket);
@@ -168,24 +174,24 @@ public class FluidPipeEntity extends PipeEntity {
         if (this.contents.isEmpty()) {
             return 0;
         }
-        return Math.max(1, Math.round(15.0F * (float) this.totalAmount() / CAPACITY));
+        return Math.max(1, Math.round(15.0F * (float) this.totalAmount() / capacity()));
     }
 
     @Override
     public short getTargetSpeed() {
         FluidState fluidState = this.fluid.getFluid().defaultFluidState();
         if (fluidState.is(ClassicPipes.THIN_FLUIDS)) {
-            return ItemInPipe.DEFAULT_SPEED * 4;
+            return (short) PipeConfig.fluidThinSpeed();
         } else if (fluidState.is(ClassicPipes.THICK_FLUIDS) && this.level != null && !this.level.environmentAttributes().getDimensionValue(EnvironmentAttributes.FAST_LAVA)) {
-            return ItemInPipe.DEFAULT_SPEED;
+            return (short) PipeConfig.fluidThickSpeed();
         } else {
-            return ItemInPipe.DEFAULT_SPEED * 2;
+            return (short) PipeConfig.fluidNormalSpeed();
         }
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION;
+        return (short) PipeConfig.fluidAcceleration();
     }
 
     @Override
@@ -234,7 +240,7 @@ public class FluidPipeEntity extends PipeEntity {
     }
 
     public int remainingCapacity() {
-        return CAPACITY - this.totalAmount();
+        return capacity() - this.totalAmount();
     }
 
     public void setFluid(FluidWithData fluid) {
