@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.block.LapisPipeBlock;
 import jagm.classicpipes.util.FacingOrNone;
@@ -63,5 +65,8 @@ public class LapisPipeEntity extends RoundRobinPipeEntity {
         super.saveAdditional(valueOutput, registries);
         valueOutput.putByte("entry_direction", (byte) this.entryDirection.get3DDataValue());
     }
+
+    @Override public short getTargetSpeed() { return PipeConfig.lapisSpeed(); }
+    @Override public short getAcceleration() { return PipeConfig.lapisAcceleration(); }
 
 }
