@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.util.ItemInPipe;
 import net.minecraft.core.BlockPos;
@@ -53,4 +55,14 @@ public class FlintPipeEntity extends RoundRobinPipeEntity {
         }
     }
 
+
+    @Override
+    public short getTargetSpeed() {
+        return (short) PipeConfig.itemFlintSpeed();
+    }
+
+    @Override
+    public short getAcceleration() {
+        return (short) PipeConfig.itemFlintAcceleration();
+    }
 }
