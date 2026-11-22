@@ -31,7 +31,7 @@ public class AdvancedCopperFluidPipeEntity extends CopperFluidPipeEntity impleme
     }
 
     @Override
-    protected int extractionIntervalTicks() { return PipeConfig.advancedCopperFluidExtractInterval(); }
+    protected long extractionIntervalTicks() { return PipeConfig.advancedCopperFluidExtractInterval(); }
 
     @Override
     protected int extractAmount() {
