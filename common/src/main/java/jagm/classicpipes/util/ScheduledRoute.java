@@ -7,7 +7,7 @@ public class ScheduledRoute {
     
 
     private final Direction direction;
-    private short age;
+    private long age;
 
     public ScheduledRoute(Direction direction) {
         this.direction = direction;
