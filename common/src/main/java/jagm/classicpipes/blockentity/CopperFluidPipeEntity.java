@@ -38,7 +38,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
         if (state.getValue(CopperFluidPipeBlock.ENABLED) && state.getValue(CopperFluidPipeBlock.FACING) != FacingOrNone.NONE) {
             if (this.cooldown-- <= 0) {
                 Direction direction = state.getValue(CopperFluidPipeBlock.FACING).getDirection();
-                if (Services.LOADER_SERVICE.handleFluidExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), PipeConfig.fluidCopperExtractAmount(), this.filterPredicate())) {
+                if (Services.LOADER_SERVICE.handleFluidExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), this.extractAmount(), this.filterPredicate())) {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
