@@ -290,7 +290,7 @@ public class FabricService implements LoaderService {
     @Override
     public boolean handleFluidExtraction(FluidPipeEntity pipe, BlockState pipeState, ServerLevel level, BlockPos containerPos, Direction face, int amount, Predicate<FluidWithData> predicate) {
         BlockState state = level.getBlockState(containerPos);
-        if (state.getBlock() instanceof FluidPipeBlock || pipe.totalAmount() >= FluidPipeEntity.CAPACITY) {
+        if (state.getBlock() instanceof FluidPipeBlock || pipe.totalAmount() >= FluidPipeEntity.capacity()) {
             return false;
         }
         Storage<FluidVariant> fluidHandler = FluidStorage.SIDED.find(level, containerPos, face);
