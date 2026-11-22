@@ -19,6 +19,9 @@ public final class PipeConfig {
 
     private PipeConfig() {}
 
+    /** Forces configuration loading during common mod initialization. */
+    public static void initialize() {}
+
     static {
         load();
     }
