@@ -107,38 +107,38 @@ public final class PipeConfig {
     }
 
     public static int itemSpeedLimit() { return get("items.speed_limit", 1024, 1, 4096); }
-    public static int itemBasicSpeed() { return get("items.basic.speed", 64, 1, 1024); }
-    public static int itemBasicAcceleration() { return get("items.basic.acceleration", 1, 1, 1024); }
-    public static int itemCopperSpeed() { return get("items.copper.speed", 64, 1, 1024); }
-    public static int itemCopperAcceleration() { return get("items.copper.acceleration", 1, 1, 1024); }
+    public static int itemBasicSpeed() { return get("items.basic.speed", 64, 1, 4096); }
+    public static int itemBasicAcceleration() { return get("items.basic.acceleration", 1, 1, 4096); }
+    public static int itemCopperSpeed() { return get("items.copper.speed", 64, 1, 4096); }
+    public static int itemCopperAcceleration() { return get("items.copper.acceleration", 1, 1, 4096); }
     public static int itemCopperExtractAmount() { return get("items.copper.extract_amount", 1, 1, 999999); }
     public static int itemCopperInterval() { return get("items.copper.extract_interval_ticks", 9, 1, 127); }
-    public static int itemAdvancedCopperSpeed() { return get("items.advanced_copper.speed", 512, 1, 1024); }
-    public static int itemAdvancedCopperAcceleration() { return get("items.advanced_copper.acceleration", 16, 1, 1024); }
+    public static int itemAdvancedCopperSpeed() { return get("items.advanced_copper.speed", 512, 1, 4096); }
+    public static int itemAdvancedCopperAcceleration() { return get("items.advanced_copper.acceleration", 16, 1, 4096); }
     public static int itemAdvancedCopperExtractAmount() { return get("items.advanced_copper.extract_amount", 64, 1, 999999); }
     public static int itemAdvancedCopperInterval() { return get("items.advanced_copper.extract_interval_ticks", 9, 1, 127); }
-    public static int itemGoldenSpeed() { return get("items.golden.speed", 1024, 1, 1024); }
-    public static int itemGoldenAcceleration() { return get("items.golden.acceleration", 16, 1, 1024); }
-    public static int itemIronSpeed() { return get("items.iron.speed", 64, 1, 1024); }
-    public static int itemIronAcceleration() { return get("items.iron.acceleration", 1, 1, 1024); }
-    public static int itemDiamondSpeed() { return get("items.diamond.speed", 64, 1, 1024); }
-    public static int itemDiamondAcceleration() { return get("items.diamond.acceleration", 1, 1, 1024); }
-    public static int itemFlintSpeed() { return get("items.flint.speed", 64, 1, 1024); }
-    public static int itemFlintAcceleration() { return get("items.flint.acceleration", 1, 1, 1024); }
-    public static int itemLapisSpeed() { return get("items.lapis.speed", 64, 1, 1024); }
-    public static int itemLapisAcceleration() { return get("items.lapis.acceleration", 1, 1, 1024); }
-    public static int itemObsidianSpeed() { return get("items.obsidian.speed", 64, 1, 1024); }
-    public static int itemObsidianAcceleration() { return get("items.obsidian.acceleration", 1, 1, 1024); }
-    public static int itemBoneSpeed() { return get("items.bone.speed", 64, 1, 1024); }
-    public static int itemBoneAcceleration() { return get("items.bone.acceleration", 1, 1, 1024); }
-    public static int itemNetworkSpeed() { return get("items.network.speed", 1024, 1, 1024); }
-    public static int itemNetworkAcceleration() { return get("items.network.acceleration", 64, 1, 1024); }
+    public static int itemGoldenSpeed() { return get("items.golden.speed", 1024, 1, 4096); }
+    public static int itemGoldenAcceleration() { return get("items.golden.acceleration", 16, 1, 4096); }
+    public static int itemIronSpeed() { return get("items.iron.speed", 64, 1, 4096); }
+    public static int itemIronAcceleration() { return get("items.iron.acceleration", 1, 1, 4096); }
+    public static int itemDiamondSpeed() { return get("items.diamond.speed", 64, 1, 4096); }
+    public static int itemDiamondAcceleration() { return get("items.diamond.acceleration", 1, 1, 4096); }
+    public static int itemFlintSpeed() { return get("items.flint.speed", 64, 1, 4096); }
+    public static int itemFlintAcceleration() { return get("items.flint.acceleration", 1, 1, 4096); }
+    public static int itemLapisSpeed() { return get("items.lapis.speed", 64, 1, 4096); }
+    public static int itemLapisAcceleration() { return get("items.lapis.acceleration", 1, 1, 4096); }
+    public static int itemObsidianSpeed() { return get("items.obsidian.speed", 64, 1, 4096); }
+    public static int itemObsidianAcceleration() { return get("items.obsidian.acceleration", 1, 1, 4096); }
+    public static int itemBoneSpeed() { return get("items.bone.speed", 64, 1, 4096); }
+    public static int itemBoneAcceleration() { return get("items.bone.acceleration", 1, 1, 4096); }
+    public static int itemNetworkSpeed() { return get("items.network.speed", 1024, 1, 4096); }
+    public static int itemNetworkAcceleration() { return get("items.network.acceleration", 64, 1, 4096); }
     public static int fluidCapacity() { return get("fluids.capacity_mb", 1000, 1, 100000000); }
     public static int fluidMinimumPacket() { return get("fluids.minimum_packet_mb", 20, 1, 100000000); }
-    public static int fluidThinSpeed() { return get("fluids.basic.speed_thin", 256, 1, 1024); }
-    public static int fluidNormalSpeed() { return get("fluids.basic.speed_normal", 128, 1, 1024); }
-    public static int fluidThickSpeed() { return get("fluids.basic.speed_thick", 64, 1, 1024); }
-    public static int fluidAcceleration() { return get("fluids.basic.acceleration", 1, 1, 1024); }
+    public static int fluidThinSpeed() { return get("fluids.basic.speed_thin", 256, 1, 4096); }
+    public static int fluidNormalSpeed() { return get("fluids.basic.speed_normal", 128, 1, 4096); }
+    public static int fluidThickSpeed() { return get("fluids.basic.speed_thick", 64, 1, 4096); }
+    public static int fluidAcceleration() { return get("fluids.basic.acceleration", 1, 1, 4096); }
     public static int fluidCopperExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, 100000000); }
     public static int fluidCopperInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, 127); }
     public static int fluidAdvancedCopperExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, 100000000); }
