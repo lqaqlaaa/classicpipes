@@ -64,6 +64,7 @@ public final class PipeConfig {
         p.setProperty("items.advanced_copper.speed", "512");
         p.setProperty("items.advanced_copper.acceleration", "16");
         p.setProperty("items.advanced_copper.extract_amount", "64");
+        p.setProperty("items.advanced_copper.extract_interval_ticks", "9");
         p.setProperty("items.golden.speed", "1024");
         p.setProperty("items.golden.acceleration", "16");
         p.setProperty("items.iron.speed", "64");
@@ -89,6 +90,7 @@ public final class PipeConfig {
         p.setProperty("fluids.copper.extract_amount_mb", "125");
         p.setProperty("fluids.copper.extract_interval_ticks", "5");
         p.setProperty("fluids.advanced_copper.extract_amount_mb", "500");
+        p.setProperty("fluids.advanced_copper.extract_interval_ticks", "5");
         return p;
     }
 
@@ -112,6 +114,7 @@ public final class PipeConfig {
     public static int itemAdvancedCopperSpeed() { return get("items.advanced_copper.speed", 512, 1, 1024); }
     public static int itemAdvancedCopperAcceleration() { return get("items.advanced_copper.acceleration", 16, 1, 1024); }
     public static int itemAdvancedCopperExtractAmount() { return get("items.advanced_copper.extract_amount", 64, 1, 999999); }
+    public static int itemAdvancedCopperInterval() { return get("items.advanced_copper.extract_interval_ticks", 9, 1, 12000); }
     public static int itemGoldenSpeed() { return get("items.golden.speed", 1024, 1, 1024); }
     public static int itemGoldenAcceleration() { return get("items.golden.acceleration", 16, 1, 1024); }
     public static int itemIronSpeed() { return get("items.iron.speed", 64, 1, 1024); }
@@ -137,4 +140,5 @@ public final class PipeConfig {
     public static int fluidCopperExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, 100000000); }
     public static int fluidCopperInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, 12000); }
     public static int fluidAdvancedCopperExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, 100000000); }
+    public static int fluidAdvancedCopperInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, 12000); }
 }
