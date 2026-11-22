@@ -1,5 +1,7 @@
 package jagm.classicpipes.util;
 
+import jagm.classicpipes.PipeConfig;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -15,7 +17,7 @@ public class ItemInPipe {
     public static final short HALFWAY = PIPE_LENGTH / 2;
     public static final short DEFAULT_SPEED = 64;
     public static final short DEFAULT_ACCELERATION = 1;
-    public static final short SPEED_LIMIT = HALFWAY;
+    public static final short SPEED_LIMIT = (short) PipeConfig.speedLimit();
     public static final short DESPAWN_AGE = 24000;
 
     public static final Codec<ItemInPipe> CODEC = RecordCodecBuilder.create(instance ->
