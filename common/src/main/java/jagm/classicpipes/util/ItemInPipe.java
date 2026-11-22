@@ -1,5 +1,6 @@
 package jagm.classicpipes.util;
 
+import jagm.classicpipes.PipeConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
