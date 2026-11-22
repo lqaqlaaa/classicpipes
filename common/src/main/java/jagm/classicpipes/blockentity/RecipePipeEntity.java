@@ -36,8 +36,6 @@ import java.util.*;
 
 public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvider {
 
-    private static final byte DEFAULT_COOLDOWN = 8;
-
     private final FilterContainer filter;
     private final Direction[] slotDirections;
     private final List<List<ItemStack>> heldItems;
@@ -96,7 +94,7 @@ public class RecipePipeEntity extends NetworkedPipeEntity implements MenuProvide
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = DEFAULT_COOLDOWN;
+                this.cooldown = (byte) jagm.classicpipes.PipeConfig.recipeCrafterPollIntervalTicks();
             }
         } else if (!this.queued.isEmpty()) {
             this.addQueuedItems(level, false);
