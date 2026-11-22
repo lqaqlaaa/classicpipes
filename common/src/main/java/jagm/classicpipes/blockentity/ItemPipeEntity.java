@@ -61,7 +61,7 @@ public abstract class ItemPipeEntity extends PipeEntity implements WorldlyContai
                     this.tickAdded.remove(item);
                 }
                 item.move(this.getTargetSpeed(), this.getAcceleration());
-                if (item.getAge() > ItemInPipe.DESPAWN_AGE) {
+                if (item.getAge() > jagm.classicpipes.PipeConfig.itemPacketLifetimeTicks()) {
                     iterator.remove();
                     sendBlockUpdate = true;
                     continue;
