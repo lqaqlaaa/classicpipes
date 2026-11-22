@@ -25,7 +25,7 @@ public class RequestedItem {
     private final ItemStack stack;
     private final BlockPos destination;
     private final String playerName;
-    private short age;
+    private long age;
 
     public RequestedItem(ItemStack stack, BlockPos destination, String playerName) {
         this.stack = stack;
