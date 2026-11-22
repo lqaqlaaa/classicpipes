@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.block.IronPipeBlock;
 import jagm.classicpipes.util.ItemInPipe;
@@ -25,12 +27,12 @@ public class IronPipeEntity extends ItemPipeEntity {
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.DEFAULT_SPEED;
+        return PipeConfig.ironSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION;
+        return PipeConfig.ironAcceleration();
     }
 
 }
