@@ -22,7 +22,7 @@ import java.util.*;
 
 public class PipeNetwork {
 
-    private static final byte DEFAULT_COOLDOWN = 40; // 2 seconds between client updates.
+    
 
     private final BlockPos pos;
     private final Set<RoutingPipeEntity> routingPipes;
@@ -268,7 +268,7 @@ public class PipeNetwork {
 
     public void tick(ServerLevel level) {
         int updatablePipesCount = this.providerPipes.size() + this.matchingPipes.size() + this.stockingPipes.size();
-        int pipeToUpdate = level.getRandom().nextInt(Math.max(100, updatablePipesCount));
+        int pipeToUpdate = level.getRandom().nextInt(Math.max(jagm.classicpipes.PipeConfig.pipeUpdateScanMinimum(), updatablePipesCount));
         if (pipeToUpdate < this.providerPipes.size()) {
             int i = 0;
             for (ProviderPipe providerPipe : this.providerPipes) {
@@ -312,7 +312,7 @@ public class PipeNetwork {
                 stockingPipe.updateCache();
             }
             this.cacheChanged = false;
-            this.cacheCooldown = DEFAULT_COOLDOWN;
+            this.cacheCooldown = (byte) jagm.classicpipes.PipeConfig.clientCacheUpdateIntervalTicks();
         } else if (this.cacheCooldown > 0) {
             this.cacheCooldown--;
         }
