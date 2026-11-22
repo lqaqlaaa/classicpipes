@@ -4,7 +4,7 @@ import net.minecraft.core.Direction;
 
 public class ScheduledRoute {
 
-    private static final short MAX_AGE = 1200;
+    
 
     private final Direction direction;
     private short age;
@@ -19,7 +19,7 @@ public class ScheduledRoute {
     }
 
     public boolean timedOut() {
-        return age >= MAX_AGE;
+        return age >= jagm.classicpipes.PipeConfig.scheduledRouteTimeoutTicks();
     }
 
     public void tick() {
