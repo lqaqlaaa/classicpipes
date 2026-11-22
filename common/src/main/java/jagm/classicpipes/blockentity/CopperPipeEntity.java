@@ -19,9 +19,7 @@ import java.util.function.Predicate;
 
 public class CopperPipeEntity extends RoundRobinPipeEntity {
 
-    private static final byte DEFAULT_COOLDOWN = 8;
-
-    private byte cooldown;
+    private int cooldown;
 
     public CopperPipeEntity(BlockPos pos, BlockState state) {
         this(ClassicPipes.COPPER_PIPE_ENTITY, pos, state);
@@ -29,7 +27,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
 
     public CopperPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = (byte) this.extractionIntervalTicks();
+        this.cooldown = this.extractionIntervalTicks();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = (byte) this.extractionIntervalTicks();
+                this.cooldown = this.extractionIntervalTicks();
             }
         }
     }
@@ -69,13 +67,13 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
     @Override
     protected void loadAdditional(CompoundTag valueInput, HolderLookup.Provider registries) {
         super.loadAdditional(valueInput, registries);
-        this.cooldown = valueInput.getByte("cooldown");
+        this.cooldown = valueInput.getInt("cooldown");
     }
 
     @Override
     protected void saveAdditional(CompoundTag valueOutput, HolderLookup.Provider registries) {
         super.saveAdditional(valueOutput, registries);
-        valueOutput.putByte("cooldown", this.cooldown);
+        valueOutput.putInt("cooldown", this.cooldown);
     }
 
 }
