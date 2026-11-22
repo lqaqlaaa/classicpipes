@@ -336,7 +336,7 @@ public class ForgeService implements LoaderService {
     @Override
     public boolean handleFluidExtraction(FluidPipeEntity pipe, BlockState pipeState, ServerLevel level, BlockPos containerPos, Direction face, int amount, Predicate<FluidWithData> predicate) {
         BlockEntity blockEntity = level.getBlockEntity(containerPos);
-        if (blockEntity instanceof FluidPipeEntity || pipe.totalAmount() >= FluidPipeEntity.CAPACITY) {
+        if (blockEntity instanceof FluidPipeEntity || pipe.totalAmount() >= FluidPipeEntity.capacity()) {
             return false;
         } else if (blockEntity != null) {
             Optional<IFluidHandler> fluidHandlerOptional = blockEntity.getCapability(ForgeCapabilities.FLUID_HANDLER, face).resolve();
