@@ -144,7 +144,7 @@ public class FluidPipeEntity extends PipeEntity {
                     }
                 }
             }
-            this.targetRenderWidth = Math.min(1.0F, (float) Math.sqrt(totalAmount) / (float) Math.sqrt(FluidPipeEntity.CAPACITY)) * (7.0F / 16.0F);
+            this.targetRenderWidth = Math.min(1.0F, (float) Math.sqrt(totalAmount) / (float) Math.sqrt(FluidPipeEntity.capacity())) * (7.0F / 16.0F);
         } else {
             this.targetRenderWidth = 0.0F;
         }
@@ -273,7 +273,7 @@ public class FluidPipeEntity extends PipeEntity {
         } else if (numDirections == 1) {
             fluidPacket.setTargetDirection(validDirections.getFirst());
         } else {
-            if (fluidPacket.getAmount() > MIN_PACKET_SIZE) {
+            if (fluidPacket.getAmount() > minimumPacketSize()) {
                 int splitAmount = fluidPacket.getAmount() / numDirections;
                 int leftoverAmount = fluidPacket.getAmount() % numDirections;
                 Collections.shuffle(validDirections);
