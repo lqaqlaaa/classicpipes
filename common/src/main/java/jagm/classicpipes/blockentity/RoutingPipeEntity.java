@@ -30,7 +30,7 @@ public class RoutingPipeEntity extends NetworkedPipeEntity implements MenuProvid
     private final SingleItemFilterContainer filter;
     private boolean defaultRoute;
     private final Map<Direction, List<ItemStack>> cannotFit;
-    private int overflowCheck;
+    private long overflowCheck;
 
     public RoutingPipeEntity(BlockPos pos, BlockState state) {
         super(ClassicPipes.ROUTING_PIPE_ENTITY, pos, state);
