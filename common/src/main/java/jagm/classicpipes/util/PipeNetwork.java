@@ -33,7 +33,7 @@ public class PipeNetwork {
     private final Set<RecipePipeEntity> recipePipes;
     private SortingMode sortingMode;
     private boolean cacheChanged;
-    private int cacheCooldown;
+    private long cacheCooldown;
     private final List<RequestedItem> requestedItems;
 
     public PipeNetwork(BlockPos pos, SortingMode sortingMode) {
@@ -46,7 +46,7 @@ public class PipeNetwork {
         this.sortingMode = sortingMode;
         this.pos = pos;
         this.cacheChanged = false;
-        this.cacheCooldown = 0;
+        this.cacheCooldown = 0L;
         this.requestedItems = new ArrayList<>();
     }
 
