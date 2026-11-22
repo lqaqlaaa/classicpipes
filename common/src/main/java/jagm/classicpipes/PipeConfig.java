@@ -21,6 +21,9 @@ public final class PipeConfig {
 
     private PipeConfig() {}
 
+    /** Trigger configuration initialization from the common mod entrypoint. */
+    public static void initialize() {}
+
     private static void load() {
         Properties defaults = defaults();
         try {
