@@ -47,6 +47,12 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
         }
     }
 
+    @Override
+    public short getTargetSpeed() { return (short) PipeConfig.itemCopperSpeed(); }
+
+    @Override
+    public short getAcceleration() { return (short) PipeConfig.itemCopperAcceleration(); }
+
     protected int extractAmount() {
         return PipeConfig.itemCopperExtractAmount();
     }
