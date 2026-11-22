@@ -19,7 +19,7 @@ import java.util.function.Predicate;
 
 public class CopperFluidPipeEntity extends FluidPipeEntity {
 
-    private int cooldown;
+    private long cooldown;
 
     public CopperFluidPipeEntity(BlockPos pos, BlockState state) {
         this(ClassicPipes.COPPER_FLUID_PIPE_ENTITY, pos, state);
@@ -49,7 +49,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
         return PipeConfig.copperFluidExtractAmount();
     }
 
-    protected int extractionIntervalTicks() { return PipeConfig.copperFluidExtractInterval(); }
+    protected long extractionIntervalTicks() { return PipeConfig.copperFluidExtractInterval(); }
 
 
     protected Predicate<FluidWithData> filterPredicate() {
@@ -59,13 +59,13 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
     @Override
     protected void loadAdditional(CompoundTag valueInput, HolderLookup.Provider registries) {
         super.loadAdditional(valueInput, registries);
-        this.cooldown = valueInput.getInt("cooldown");
+        this.cooldown = valueInput.getLong("cooldown");
     }
 
     @Override
     protected void saveAdditional(CompoundTag valueOutput, HolderLookup.Provider registries) {
         super.saveAdditional(valueOutput, registries);
-        valueOutput.putInt("cooldown", this.cooldown);
+        valueOutput.putLong("cooldown", this.cooldown);
     }
 
 }
