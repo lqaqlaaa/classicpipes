@@ -19,7 +19,7 @@ import java.util.function.Predicate;
 
 public class CopperPipeEntity extends RoundRobinPipeEntity {
 
-    private int cooldown;
+    private long cooldown;
 
     public CopperPipeEntity(BlockPos pos, BlockState state) {
         this(ClassicPipes.COPPER_PIPE_ENTITY, pos, state);
@@ -49,7 +49,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
         return PipeConfig.copperExtractAmount();
     }
 
-    protected int extractionIntervalTicks() {
+    protected long extractionIntervalTicks() {
         return PipeConfig.copperExtractInterval();
     }
 
@@ -67,13 +67,13 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
     @Override
     protected void loadAdditional(CompoundTag valueInput, HolderLookup.Provider registries) {
         super.loadAdditional(valueInput, registries);
-        this.cooldown = valueInput.getInt("cooldown");
+        this.cooldown = valueInput.getLong("cooldown");
     }
 
     @Override
     protected void saveAdditional(CompoundTag valueOutput, HolderLookup.Provider registries) {
         super.saveAdditional(valueOutput, registries);
-        valueOutput.putInt("cooldown", this.cooldown);
+        valueOutput.putLong("cooldown", this.cooldown);
     }
 
 }
