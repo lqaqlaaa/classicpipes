@@ -38,7 +38,7 @@ public class CopperPipeEntity extends RoundRobinPipeEntity {
         if (state.getValue(CopperPipeBlock.ENABLED) && state.getValue(CopperPipeBlock.FACING) != FacingOrNone.NONE) {
             if (this.cooldown-- <= 0) {
                 Direction direction = state.getValue(CopperPipeBlock.FACING).getDirection();
-                if (Services.LOADER_SERVICE.handleItemExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), PipeConfig.itemCopperExtractAmount(), this.filterPredicate())) {
+                if (Services.LOADER_SERVICE.handleItemExtraction(this, state, level, pos.relative(direction), direction.getOpposite(), this.extractAmount(), this.filterPredicate())) {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
