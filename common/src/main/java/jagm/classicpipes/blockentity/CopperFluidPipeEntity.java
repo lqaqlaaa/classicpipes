@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.block.CopperFluidPipeBlock;
 import jagm.classicpipes.services.Services;
@@ -27,7 +29,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
 
     public CopperFluidPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = DEFAULT_COOLDOWN;
+        this.cooldown = (byte) this.extractionIntervalTicks();
     }
 
     @Override
@@ -40,14 +42,17 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
                     level.sendBlockUpdated(pos, state, state, 2);
                     this.setChanged();
                 }
-                this.cooldown = DEFAULT_COOLDOWN;
+                this.cooldown = (byte) this.extractionIntervalTicks();
             }
         }
     }
 
     protected int extractAmount() {
-        return 125;
+        return PipeConfig.copperFluidExtractAmount();
     }
+
+    protected int extractionIntervalTicks() { return PipeConfig.copperFluidExtractInterval(); }
+
 
     protected Predicate<FluidWithData> filterPredicate() {
         return fluid -> true;
