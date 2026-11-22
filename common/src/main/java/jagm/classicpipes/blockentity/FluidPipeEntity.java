@@ -278,7 +278,7 @@ public class FluidPipeEntity extends PipeEntity {
         } else if (numDirections == 1) {
             fluidPacket.setTargetDirection(validDirections.getFirst());
         } else {
-            if (fluidPacket.getAmount() > MIN_PACKET_SIZE) {
+            if (fluidPacket.getAmount() > minimumPacketSize()) {
                 int splitAmount = fluidPacket.getAmount() / numDirections;
                 int leftoverAmount = fluidPacket.getAmount() % numDirections;
                 Collections.shuffle(validDirections);
