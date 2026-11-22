@@ -204,11 +204,11 @@ public final class PipeConfig {
     public static short copperSpeed() { return speed("copper", 64); }
     public static short copperAcceleration() { return acceleration("copper", 1); }
     public static int copperExtractAmount() { return get("items.copper.extract_amount", 1, 1, Integer.MAX_VALUE); }
-    public static int copperExtractInterval() { return get("items.copper.extract_interval_ticks", 9, 1, Integer.MAX_VALUE); }
+    public static long copperExtractInterval() { return getLong("items.copper.extract_interval_ticks", 9L, 1L, Long.MAX_VALUE); }
     public static short advancedCopperSpeed() { return speed("advanced_copper", 512); }
     public static short advancedCopperAcceleration() { return acceleration("advanced_copper", 16); }
     public static int advancedCopperExtractAmount() { return get("items.advanced_copper.extract_amount", 64, 1, Integer.MAX_VALUE); }
-    public static int advancedCopperExtractInterval() { return get("items.advanced_copper.extract_interval_ticks", 9, 1, Integer.MAX_VALUE); }
+    public static long advancedCopperExtractInterval() { return getLong("items.advanced_copper.extract_interval_ticks", 9L, 1L, Long.MAX_VALUE); }
     public static short goldenSpeed() { return speed("golden", 1024); }
     public static short goldenAcceleration() { return acceleration("golden", 16); }
     public static short ironSpeed() { return speed("iron", 64); }
@@ -233,9 +233,9 @@ public final class PipeConfig {
     public static short fluidThickSpeed() { return (short) get("fluids.speed_thick", 64, 1, speedLimit()); }
     public static short fluidAcceleration() { return (short) get("fluids.acceleration", 1, 1, Short.MAX_VALUE); }
     public static int copperFluidExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, Integer.MAX_VALUE); }
-    public static int copperFluidExtractInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
+    public static long copperFluidExtractInterval() { return getLong("fluids.copper.extract_interval_ticks", 5L, 1L, Long.MAX_VALUE); }
     public static int advancedCopperFluidExtractAmount() { return get("fluids.advanced_copper.extract_amount_mb", 500, 1, Integer.MAX_VALUE); }
-    public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
+    public static long advancedCopperFluidExtractInterval() { return getLong("fluids.advanced_copper.extract_interval_ticks", 5L, 1L, Long.MAX_VALUE); }
 
     public static long itemPacketLifetimeTicks() { return getLong("items.packet_lifetime_ticks", 24000L, 1L, Long.MAX_VALUE - 1); }
     public static long networkRequestTimeoutTicks() { return getLong("items.network_request_timeout_ticks", 24000L, 1L, Long.MAX_VALUE - 1); }
