@@ -108,8 +108,8 @@ public final class PipeConfig {
             w.write("# 数值越大通常代表速度/数量/时间越大；具体影响见每项说明。");
             w.newLine();
             section(w, "物品管道：传输速度与加速度");
-            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–2147483647。");
-            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–2147483647。");
+            setting(w, "items.speed_limit", "1024", "所有物品管道共用的最高移动速度上限。单个管道速度不能超过此值。单位：内部速度单位/刻。提高可允许更快的管道；降低会限制所有物品管道。范围：1–32767。");
+            setting(w, "items.initial_packet_speed", "64", "物品刚进入管道时的初始移动速度。单位：内部速度单位/刻。数值越大，物品刚进入管道时移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
             itemSettings(w, "basic", "普通/基础物品管道");
             itemSettings(w, "copper", "铜质物品管道");
             setting(w, "items.copper.extract_amount", "1", "铜质物品管道每次从相邻容器抽取的物品数量。单位：个。提高可一次抽取更多物品。范围：1–2147483647。");
@@ -137,9 +137,9 @@ public final class PipeConfig {
             section(w, "流体管道");
             setting(w, "fluids.capacity_mb", "1000", "每一段流体管道内部可储存的流体总容量。单位：毫桶（mB）。提高可储存更多流体。范围：1–2147483647。");
             setting(w, "fluids.minimum_packet_mb", "20", "流体管道拆分/传输流体包时使用的最小包量。单位：mB。提高会减少小流体包数量，但可能延后少量流体的传输。范围：1–当前容量（最大 2147483647 mB）。");
-            setting(w, "fluids.speed_thin", "256", "细流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
-            setting(w, "fluids.speed_normal", "128", "普通流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
-            setting(w, "fluids.speed_thick", "64", "浓稠流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–2147483647。");
+            setting(w, "fluids.speed_thin", "256", "细流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
+            setting(w, "fluids.speed_normal", "128", "普通流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
+            setting(w, "fluids.speed_thick", "64", "浓稠流体类别的流体包目标移动速度。单位：内部速度单位/刻。范围：1–32767。");
             setting(w, "fluids.acceleration", "1", "所有流体管道中流体包每刻调整速度的幅度。数值越大，流体包越快达到目标速度。单位：内部速度单位/刻。范围：1–32767。");
             setting(w, "fluids.copper.extract_amount_mb", "125", "铜质流体管道每次从相邻容器抽取的流体量。单位：mB。范围：1–2147483647。");
             setting(w, "fluids.copper.extract_interval_ticks", "5", "铜质流体管道两次抽取之间的间隔。单位：游戏刻。数值越小，抽取越频繁。范围：1–2147483647。");
@@ -177,7 +177,7 @@ public final class PipeConfig {
 
     private static void itemSettings(BufferedWriter w, String id, String name) throws IOException {
         setting(w, "items." + id + ".speed", id.equals("golden") || id.equals("network") ? "1024" : id.equals("advanced_copper") ? "512" : "64",
-            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–2147483647。");
+            name + "的目标移动速度。单位：内部速度单位/刻。数值越大，物品在管道中移动越快；仍受 items.speed_limit 限制。范围：1–32767。");
         String acceleration = id.equals("network") || id.equals("advanced_copper") || id.equals("golden") ? (id.equals("network") ? "64" : "16") : "1";
         setting(w, "items." + id + ".acceleration", acceleration,
             name + "的加速度，即每刻调整物品速度的幅度。数值越大，物品越快达到目标速度。单位：内部速度单位/刻。范围：1–32767。");
@@ -222,9 +222,9 @@ public final class PipeConfig {
 
     public static int fluidCapacity() { return get("fluids.capacity_mb", 1000, 1, Integer.MAX_VALUE); }
     public static int fluidMinimumPacket() { return get("fluids.minimum_packet_mb", 20, 1, fluidCapacity()); }
-    public static short fluidThinSpeed() { return (short) get("fluids.speed_thin", 256, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
-    public static short fluidNormalSpeed() { return (short) get("fluids.speed_normal", 128, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
-    public static short fluidThickSpeed() { return (short) get("fluids.speed_thick", 64, 1, Math.min(speedLimit(), Short.MAX_VALUE)); }
+    public static short fluidThinSpeed() { return (short) get("fluids.speed_thin", 256, 1, speedLimit()); }
+    public static short fluidNormalSpeed() { return (short) get("fluids.speed_normal", 128, 1, speedLimit()); }
+    public static short fluidThickSpeed() { return (short) get("fluids.speed_thick", 64, 1, speedLimit()); }
     public static short fluidAcceleration() { return (short) get("fluids.acceleration", 1, 1, Short.MAX_VALUE); }
     public static int copperFluidExtractAmount() { return get("fluids.copper.extract_amount_mb", 125, 1, Integer.MAX_VALUE); }
     public static int copperFluidExtractInterval() { return get("fluids.copper.extract_interval_ticks", 5, 1, Integer.MAX_VALUE); }
