@@ -231,9 +231,9 @@ public final class PipeConfig {
     public static int advancedCopperFluidExtractInterval() { return get("fluids.advanced_copper.extract_interval_ticks", 5, 1, 127); }
 
     public static int itemPacketLifetimeTicks() { return get("items.packet_lifetime_ticks", 24000, 1, Short.MAX_VALUE - 1); }
-    public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Short.MAX_VALUE); }
-    public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Short.MAX_VALUE); }
-    public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Short.MAX_VALUE); }
+    public static int networkRequestTimeoutTicks() { return get("items.network_request_timeout_ticks", 24000, 1, Short.MAX_VALUE - 1); }
+    public static int scheduledRouteTimeoutTicks() { return get("items.scheduled_route_timeout_ticks", 1200, 1, Short.MAX_VALUE - 1); }
+    public static int routingOverflowCheckIntervalTicks() { return get("items.routing_overflow_check_interval_ticks", 100, 1, Short.MAX_VALUE - 1); }
     public static int clientCacheUpdateIntervalTicks() { return get("network.client_cache_update_interval_ticks", 40, 1, 127); }
     public static int pipeUpdateScanMinimum() { return get("network.pipe_update_scan_minimum", 100, 1, 1_000_000); }
 }
