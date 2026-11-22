@@ -1,5 +1,7 @@
 package jagm.classicpipes.blockentity;
 
+import jagm.classicpipes.PipeConfig;
+
 import jagm.classicpipes.ClassicPipes;
 import jagm.classicpipes.util.ItemInPipe;
 import jagm.classicpipes.util.MiscUtil;
@@ -68,12 +70,12 @@ public class BonePipeEntity extends ItemPipeEntity {
 
     @Override
     public short getTargetSpeed() {
-        return ItemInPipe.DEFAULT_SPEED;
+        return PipeConfig.boneSpeed();
     }
 
     @Override
     public short getAcceleration() {
-        return ItemInPipe.DEFAULT_ACCELERATION;
+        return PipeConfig.boneAcceleration();
     }
 
 }
