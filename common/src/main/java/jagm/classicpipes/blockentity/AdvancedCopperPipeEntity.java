@@ -31,6 +31,9 @@ public class AdvancedCopperPipeEntity extends CopperPipeEntity implements MenuPr
     }
 
     @Override
+    protected int extractionIntervalTicks() { return PipeConfig.itemAdvancedCopperInterval(); }
+
+    @Override
     protected int extractAmount() {
         return PipeConfig.itemAdvancedCopperExtractAmount();
     }
