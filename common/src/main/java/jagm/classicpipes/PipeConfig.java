@@ -31,8 +31,14 @@ public final class PipeConfig {
                     VALUES.load(input);
                 }
             }
-            boolean created = !Files.exists(CONFIG_PATH);
-            if (created) {
+            boolean changed = false;
+            for (String key : defaults().stringPropertyNames()) {
+                if (!VALUES.containsKey(key)) {
+                    VALUES.setProperty(key, defaults().getProperty(key));
+                    changed = true;
+                }
+            }
+            if (changed || !Files.exists(CONFIG_PATH)) {
                 save();
             }
         } catch (IOException exception) {
@@ -43,7 +49,7 @@ public final class PipeConfig {
     private static void save() throws IOException {
         Properties defaults = defaults();
         try (OutputStream output = Files.newOutputStream(CONFIG_PATH)) {
-            defaults.store(output, "Classic Pipes gameplay configuration. Values are shared by Fabric, Forge and NeoForge.");
+            VALUES.store(output, "Classic Pipes gameplay configuration. Values are shared by Fabric, Forge and NeoForge.");
         }
     }
 
