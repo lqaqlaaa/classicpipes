@@ -29,7 +29,7 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
 
     public CopperFluidPipeEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
         super(blockEntityType, pos, state);
-        this.cooldown = (byte) PipeConfig.fluidCopperInterval();
+        this.cooldown = (byte) this.extractionIntervalTicks();
     }
 
     @Override
@@ -46,6 +46,8 @@ public class CopperFluidPipeEntity extends FluidPipeEntity {
             }
         }
     }
+
+    protected int extractionIntervalTicks() { return PipeConfig.fluidCopperInterval(); }
 
     protected int extractAmount() {
         return PipeConfig.fluidCopperExtractAmount();
